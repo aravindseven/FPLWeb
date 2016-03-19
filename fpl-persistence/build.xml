@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fpl-persistence">
+
+	<path id="classpath.compile">
+		<pathelement location="${project.home}/fpl-util/build" />
+		<pathelement location="${project.home}/fpl-common/build" />
+		<pathelement location="${project.home}/fpl-interfaces/build" />
+		<pathelement location="${fpl.lib}/hibernate3.jar" />
+		<pathelement location="${fpl.lib}/javaee.jar" />
+		<pathelement location="${fpl.lib}/mongo-java-driver-2.11.0.jar" />
+		<pathelement location="${fpl.lib}/spring-data-mongodb-1.2.0.RELEASE.jar" />
+			
+	</path>
+	
+ 	<property name="classpath.compile" refid="classpath.compile" />
+ 	
+	<import file="${build.commons}/build-lib.xml" />
+	
+</project>

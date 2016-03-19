@@ -1,0 +1,244 @@
+function RequestController($scope, $http){
+	this.scope = $scope;
+	this.http = $http;
+	this.util = new Util();
+	this.newRequestType = "";
+	this.newRequestDesc = "";
+	this.newRequestPostal = "";
+	this.newRequestArea = "";
+	this.newRequestCountry = "India";
+	this.newRequestUrgency = "Low";
+	this.newRequestFollowup = false;
+}
+
+RequestController.prototype.fetchNewRequest = function(uRequest) {
+	var self = this;
+	this.util.block("Initializing ..");
+	this.http({
+		method : 'POST',
+		url : 'getAllDomain.do',
+		params : {
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		if (data) {
+			var sel = $("select[name=type]");
+			sel.empty();
+			sel.append('<option value="">Select Type..</option>');
+			$.each(data, function(index){
+				sel.append('<option value="' + this.id + '">' + this.name + '</option>');
+			})
+		}
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+	});
+}
+
+RequestController.prototype.requestChange = function(uRequest){
+	var self = this;
+	this.util.block("Fetching Request description ..");
+	this.http({
+		method : 'POST',
+		url : 'support/contents/request_desc.json',
+		params : {
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		if (data) {
+			$.each(data, function(index){
+				if(this.name == self.newRequestType){
+					self.newRequestDesc = this.desc;
+				}
+			})
+		}
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+	});
+}
+
+RequestController.prototype.postalChange = function(uRequest){
+	var self = this;
+	this.util.block("Searching Finanacial planner..");
+	this.http({
+		method : 'POST',
+		url : 'checkFPLForRequest.do',
+		params : {
+			'postalCode' : uRequest.newRequestPostal,
+			'domainId' : uRequest.newRequestType
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		if (data) {
+			if(data.status == "failure"){
+				self.util.notify("Request", data.reason, "failure");
+				if(uRequest.newRequestPostal != null && uRequest.newRequestType != null) {
+					$("#adminRequest").removeAttr("disabled");
+				}
+			} else {
+				$("#adminRequest").attr("disabled");
+			}
+			self.newRequestArea = "";
+			self.http({
+				method : 'POST',
+				type: 'jsonp',
+				url : 'http://maps.google.com/maps/api/geocode/json?address=india&components=postal_code:' + uRequest.newRequestPostal + '&sensor=false',
+				params : {
+				},
+				headers : {
+					'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+				}
+			}).success(function(data, status, headers, config) {
+				self.newRequestArea = data.results[0].address_components[1].short_name;
+			}).error(function(data, status, headers, config) {
+				alert("here")
+			});
+		}
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+	});
+}
+
+RequestController.prototype.submitRequest = function(uRequest){
+	var self = this;
+	this.util.block("Creating new Request ..");
+	var requestJson = {
+			type : uRequest.newRequestType,
+			description : uRequest.newRequestDesc,
+			postalCode : uRequest.newRequestPostal,
+			location : uRequest.newRequestArea,
+			country : uRequest.newRequestCountry,
+			urgency : uRequest.newRequestUrgency,
+			followUp : uRequest.newRequestFollowup
+		};
+	this.http({
+		method : 'POST',
+		url : 'newRequestCreate.do',
+		params : {
+			"requestJson" : requestJson
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		/*if (data.status == "success") {
+			window.location.href = "initRequest.do";
+		} else {
+			self.util.notify("Request Failure", data.reason, "failure");
+		}*/
+		window.location.href = "fetchFPLRequest.do";
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+	});
+};
+
+
+RequestController.prototype.viewRequest = function(reqid)
+{
+	var self = this;	
+	this.util.block("Retrieving Request Details");
+	this.http({
+		method : 'POST',
+		url : 'getRequestDetail.do',
+		params : {
+			"requestId":reqid
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+		alert("error");
+	}); 
+};
+
+RequestController.prototype.editRequest = function(reqid)
+{
+	alert(reqid);
+	var self = this;
+	var requesteditJson = {
+			ReqId : reqid			
+		};
+	//this.util.block("Retrieving details");	
+	this.http({
+		method : 'POST',
+		url : 'support/contents/precover.json',
+		params : {"requesteditJson" : requesteditJson},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {		
+		if (data.status == "success") {
+			window.location.href = "initRequest.do";
+		} else {
+			self.util.notify("Request Failure", data.reason, "failure");
+		}
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+		alert("error");
+	}); 
+};
+
+RequestController.prototype.deleteRequest= function(reqid)
+{
+	var self = this;
+	var retVal = confirm("Are you sure you want to delete this request?");
+	if (retVal == true) {
+		this.util.block("Deleting Request");
+        this.http({
+    		method : 'POST',
+    		url : 'deleteRequest.do',
+    		params : {
+    			"requestId":reqid
+    		},
+    		headers : {
+    			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+    		}
+        }).success(function(data, status, headers, config) {
+    		if (data.status == "success") {
+    			self.util.notify("Request Info", data.reason, "success");
+    			window.location.href = "initRequest.do";
+    		} else {
+    			self.util.notify("Request Failure", data.reason, "failure");
+    		}
+    		self.util.unblock();
+    	}).error(function(data, status, headers, config) {
+    		self.util.unblock();
+    		alert("Technical problem occured");
+    	});        
+    } 
+};
+
+RequestController.prototype.activityHistory= function(reqid)
+{
+	var self = this;
+	this.util.block("Retrieving Activity History");
+	this.http({
+		method : 'POST',
+		url : 'getRequestHistory.do',
+		params : {
+			"requestId":reqid
+		},
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+		}
+	}).success(function(data, status, headers, config) {
+		self.util.unblock();
+	}).error(function(data, status, headers, config) {
+		self.util.unblock();
+		alert("error");
+	}); 
+};
+
+

@@ -1,0 +1,81 @@
+
+.myProfileWrapper .tab-content {
+	background: #fff;
+	padding: 20px;
+	clear: both;
+	float: left;
+	clear: both;
+	width: 100%;
+	border: 1px solid #ccc;
+}
+.myProfileWrapper .nav-tabs > li > a:hover {
+	color: #333;
+	background: #fff;
+	border: 1px solid transparent;
+}
+.myProfileWrapper .nav-tabs > li > a {
+	color: #fff;
+	margin: 0;
+	margin-right: 10px !important;
+	margin-top: 4px;
+	margin-left: 10px;
+	padding: 13px 30px;
+}
+.myProfileWrapper .nav.nav-tabs {
+	height: 50px;
+}
+.myProfileWrapper .nav-tabs > li.active > a {
+	color: #333;
+}
+.myProfileWrapper .bs-docs-sidebar .nav > li {
+	margin: 5px 0 0 0;
+}
+.myProfileWrapper .bs-docs-sidebar .nav > li > a {
+	color: #767676;
+	border-left: 3px solid transparent;
+}
+.myProfileWrapper .bs-docs-sidebar .nav > li > a:hover {
+	background: none;
+	border-left: 3px solid #ffb901;
+}
+.myProfileWrapper .bs-docs-sidebar .nav > li.active > a, .myProfileWrapper .bs-docs-sidebar .nav > li.active > a:hover {
+	background: #ffb901;
+	border-left: 3px solid #ffb901;
+}
+.myProfileWrapper .bs-docs-sidebar .nav > li > a + ul {
+	margin-left: 20px;
+}
+.myProfileWrapper .nav.nav-tabs h3 {
+	font-size: 22px;
+	margin: 15px 20px;
+	color:#fff;
+}
+.profileTabContent .affix {
+	position: absolute;
+}
+.profileTabContent .profileTabForm .form-group {
+	margin-top: 5px;
+	clear: both;
+	float: left;
+	width: 100%;
+}
+.profileTabContent .profileTabForm .form-group label {
+	float: left;
+	margin-top: 8px;
+	width: 30%;
+}
+.profileTabContent .profileTabForm .form-group label.radio-inline {
+	width: 15%;
+	margin-left: 10px;
+}
+.profileTabContent .profileTabForm .form-group label + input, .profileTabContent .profileTabForm .form-group label + select,
+.profileTabContent .profileTabForm .form-group label + button {
+	float: left;
+	width: 65%;
+	margin-left: 10px;
+}
+.profileTabContent .profileTabForm .form-group.secondaryName label + input, .profileTabContent .profileTabForm .form-group.primaryName label + input, .profileTabContent .profileTabForm .form-group.secondaryName label + input + input, .profileTabContent .profileTabForm .form-group.primaryName label + input + input {
+	float: left;
+	width: 31%;
+	margin-left: 10px;
+}

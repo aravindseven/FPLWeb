@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fpl-core">
+
+	<path id="classpath.compile">
+		<pathelement location="${project.home}/fpl-util/build" />
+		<pathelement location="${project.home}/fpl-common/build" />
+		<pathelement location="${project.home}/fpl-interfaces/build" />
+		<pathelement location="${fpl.lib}/aspectjrt-1.7.4.jar" />
+		<pathelement location="${fpl.lib}/aspectjweaver-1.6.8.jar" />
+		<pathelement location="${fpl.lib}/spring-context-3.0.5.RELEASE.jar" />
+	</path>
+	
+ 	<property name="classpath.compile" refid="classpath.compile" />
+ 	
+	<import file="${build.commons}/build-lib.xml" />
+	
+</project>

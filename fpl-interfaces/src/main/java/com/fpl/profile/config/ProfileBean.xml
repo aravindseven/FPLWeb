@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:component-scan base-package="com.fpl"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<bean id="fpl.profile.abstractHibernateConfig" class="com.fpl.persistence.support.AbstractHibernateConfig" abstract="true">
+		<property name="templateFactory" ref="hibernate.templateFactory" />
+	</bean>
+	
+	<!-- Customer Profile Beans  -->
+	<bean name="fpl.profile.customerDAO" class="com.fpl.persistence.customer.CustomerDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype">
+	</bean>	
+	<bean name="fpl.profile.addressDAO" class="com.fpl.persistence.address.AddressDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype">
+	</bean>	
+	<bean id="fpl.profile.statusDAO" class="com.fpl.persistence.status.StatusDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype" />
+	<bean name="fpl.profile.customerPersister" class="com.fpl.core.profile.customer.CustomerPersisterImpl" scope="prototype">
+		<property name="customerDAO" ref="fpl.profile.customerDAO"/>
+		<property name="customerValidator" ref="fpl.profile.customerValidator"/>
+		<property name="customerTransformer" ref="fpl.profile.customerTransformer"/>
+		<property name="addressDAO" ref="fpl.profile.addressDAO"/>
+	</bean>	
+	<bean id="fpl.profile.customerValidator" class="com.fpl.core.profile.support.CustomerValidator">
+	</bean>
+	<bean id="fpl.profile.customerTransformer" class="com.fpl.core.profile.support.CustomerTransformer">
+		<property name="credentialDAO" ref="fpl.login.loginCredentialDAO" />
+	</bean>
+	<bean name="fpl.profile.customerRegisterService" class="com.fpl.services.profile.CustomerRegisterService" scope="prototype">
+		<property name="persister" ref="fpl.profile.customerPersister"/>
+	</bean>	
+	<bean name="fpl.profile.customerFetcher" class="com.fpl.services.profile.CustomerFetcher" scope="prototype">
+		<property name="customerFinder" ref="fpl.profile.customerFinder"/>
+		<property name="transformer" ref="fpl.profile.customerPVTransformer"/>
+	</bean>	
+	<bean id="fpl.profile.customerPVTransformer" class="com.fpl.services.profile.CustomePVTransformer">
+	</bean>
+	<bean id="fpl.profile.customerFinder" class="com.fpl.core.profile.customer.CustomerFinder">
+		<property name="customerDAO" ref="fpl.profile.customerDAO"/>
+	</bean>
+	
+	<!-- Financial Planner Profile Beans  -->
+	<bean name="fpl.profile.fplPersister" class="com.fpl.core.profile.financialplanner.FinancialPlannerPersister" scope="prototype">
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO"/>
+		<property name="validator" ref="fpl.profile.fplValidator"/>
+		<property name="fplTransformer" ref="fpl.profile.fplTransformer"/>
+		<property name="addressDAO" ref="fpl.profile.addressDAO"/>
+	</bean>
+	<bean name="fpl.profile.financialPlannerDAO" class="com.fpl.persistence.financialplanner.FinancialPlannerDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype">
+	</bean>	
+	<bean id="fpl.profile.fplValidator" class="com.fpl.core.profile.financialplanner.FinancialPlannerValidator">
+	</bean>
+	<bean id="fpl.profile.fplTransformer" class="com.fpl.core.profile.financialplanner.FinancialPlannerTransformer">
+		<property name="credentialDAO" ref="fpl.login.loginCredentialDAO" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="fpl.profile.domainDAO" class="com.fpl.persistence.domain.DomainDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype">
+	</bean>	
+	<bean name="fpl.profile.fplFinder" class="com.fpl.core.profile.financialplanner.FinancialPlannerFinder" scope="prototype">
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO"/>
+		<property name="transformer" ref="fpl.profile.fplPVTransformer"/>
+	</bean>	
+	<bean name="fpl.profile.fplPVTransformer" class="com.fpl.core.profile.financialplanner.FinancialPlannerPVTransformer" scope="prototype">
+		<property name="domainDAO" ref="fpl.profile.domainDAO"/>
+	</bean>	
+	<bean name="fpl.profile.fplFetcher" class="com.fpl.services.profile.FinancialPlannerFetcher" scope="prototype">
+		<property name="financialPlannerFinder" ref="fpl.profile.fplFinder"/>
+	</bean>	
+	<bean name="fpl.profile.fplRegisterService" class="com.fpl.services.profile.FPLRegisterService" scope="prototype">
+		<property name="persister" ref="fpl.profile.fplPersister"/>
+	</bean>	
+
+	<!-- Company Profile Beans  -->
+	<bean name="fpl.profile.companyRegisterService" class="com.fpl.services.profile.CompanyRegisterService" scope="prototype">
+		<property name="persister" ref="fpl.profile.companyPersister"/>
+	</bean>	
+	<bean name="fpl.profile.companyPersister" class="com.fpl.core.profile.company.CompanyPersister" scope="prototype">
+		<property name="companyDAO" ref="fpl.profile.companyDAO"/>
+		<property name="companyValidator" ref="fpl.profile.companyValidator"/>
+		<property name="companyTransformer" ref="fpl.profile.companyTransformer"/>
+	</bean>	
+	<bean name="fpl.profile.companyDAO" class="com.fpl.persistence.company.CompanyDAO" parent="fpl.profile.abstractHibernateConfig" scope="prototype">
+	</bean>	
+	<bean id="fpl.profile.companyValidator" class="com.fpl.core.profile.company.CompanyValidator">
+	</bean>
+	<bean id="fpl.profile.companyTransformer" class="com.fpl.core.profile.company.CompanyTransformer">
+	</bean>
+	
+	<!-- Admin Profile Beans  -->
+	<bean name="fpl.profile.adminRegisterService" class="com.fpl.services.profile.AdminRegisterService" scope="prototype">
+		<property name="persister" ref="fpl.profile.customerPersister"/>
+	</bean>	
+	<bean name="fpl.profile.adminFetcher" class="com.fpl.services.profile.AdminFetcher" scope="prototype">
+		<property name="customerFinder" ref="fpl.profile.customerFinder"/>
+		<property name="transformer" ref="fpl.profile.customerPVTransformer"/>
+	</bean>	
+	<bean name="fpl.profile.profileSearcher" class="com.fpl.core.profile.admin.ProfileSearcher" scope="prototype">
+		<property name="customerDAO" ref="fpl.profile.customerDAO"/>
+		<property name="fplDAO" ref="fpl.profile.financialPlannerDAO"/>
+		<property name="companyDAO" ref="fpl.profile.companyDAO"/>
+	</bean>	
+	<bean name="fpl.profile.profileSearcherService" class="com.fpl.services.profile.ProfileSearcherService" scope="prototype">
+		<property name="profileSearcher" ref="fpl.profile.profileSearcher"/>
+	</bean>	
+	<bean name="fpl.profile.adminProfileManager" class="com.fpl.core.profile.admin.AdminProfileManager" scope="prototype">
+		<property name="loginCredentialDAO" ref="fpl.login.loginCredentialDAO"/>
+		<property name="profilePersisterMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.profile.customerPersister" />
+				<entry key="cust_individual" value-ref="fpl.profile.customerPersister" />
+				<entry key="fp_individual" value-ref="fpl.profile.fplPersister" />
+				<entry key="fp_corporate" value-ref="fpl.profile.fplPersister" />
+			</map>
+		</property>
+	</bean>	
+	
+</beans>						

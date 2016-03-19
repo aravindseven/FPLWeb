@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.AdvertisementSubscription" table="FPL_TR_ADVERTIS_SUBSCRIPTION" lazy="false">
+	    <id name="id" type="java.lang.Long" column="AS_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_TR_ADVERTIS_SUBSCRIP_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="advertisementTypeId"  	column="AS_AT_ID"					type="java.lang.Long"/>    
+	    <property name="target"  				column="AS_TARGET"					type="java.lang.String"/>    
+	    <property name="startDate"  			column="AS_START_DATE"				type="java.util.Date"/>    
+	    <property name="endDate"  				column="AS_END_DATE"				type="java.util.Date"/>  
+	    <property name="countryId"  			column="AS_CO_ID"					type="java.lang.Long"/>    
+	    <property name="media"  				column="AS_MEDIA"					type="java.lang.String"/> 
+	    <property name="renewal"  				column="AS_RENEWAL"					type="java.lang.String"/> 
+	    <property name="activityFlag"  			column="AS_ACTICITY_FLAG"			type="java.lang.String"/> 
+	    <property name="workStatus"  			column="AS_WORK_STATUS"				type="java.lang.String"/> 
+	    <property name="submissionDate"  		column="AS_SUBMISSION_DATE"			type="java.util.Date"/> 
+	    <property name="subscriptionDate"  		column="AS_SUBSCRIPTION_DATE"		type="java.util.Date"/> 
+	    <property name="note"  					column="AS_NOTE"					type="java.lang.String"/> 
+	    <many-to-one name="country" class="com.fpl.country.Country" lazy="false" insert="false" update="false">
+	    	<column name="AS_CO_ID" precision="9" scale="0" />
+	    </many-to-one>
+	    <many-to-one name="advertisementType" class="com.fpl.subscription.AdvertisementType" lazy="false" insert="false" update="false">
+	    	<column name="AS_AT_ID" precision="9" scale="0" />
+	    </many-to-one>
+	    <set name="transactionList" table="FPL_TR_PAYMENT_TRANSACTION" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key column="AS_PT_ID" not-null="true" />
+            <one-to-many class="com.fpl.subscription.PaymentTransaction"/>
+        </set>
+	</class>
+</hibernate-mapping>
+

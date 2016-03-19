@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.SubscriptionMaster" table="FPL_MA_SUBSCRIPTION_MASTER" lazy="false">
+	    <id name="id" type="java.lang.Long" column="SM_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_MA_SUBSCRIPTION_MASTER_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="type"  				column="SM_TYPE"			type="java.lang.String"/>    
+	    <property name="rate"  				column="SM_RATE"			type="java.lang.Long"/>    
+	    <property name="note"  				column="SM_NOTE"			type="java.lang.String"/>   
+	   	<property name="startDate"  		column="SM_START_DATE"		type="java.util.Date"/>    
+	    <property name="endDate"  			column="SM_END_DATE"		type="java.util.Date"/>    
+	    <property name="planFrequency"		column="SM_PLAN_FREQ"		type="java.lang.Long"/>
+	    <property name="creationDate"		column="SM_CREATION_DATE"	type="java.util.Date"/>
+	    <property name="countryId" 			column="SM_COUNTRY_ID"		type="java.lang.Long"/>
+	    <property name="status"  			column="SM_STATUS"			type="java.lang.Integer"/>
+	    
+	   	<many-to-one name="country" class="com.fpl.country.Country" lazy="false" insert="false" update="false">
+	    	<column name="SM_COUNTRY_ID" precision="9" scale="0" />
+	    </many-to-one>
+	    
+	    
+<!--   SM_PLAN_FREQ				VARCHAR(25),  -->
+<!--   SM_START_DATE				DATE, -->
+<!--   SM_END_DATE				DATE, -->
+<!--   SM_NOTE					VARCHAR(100), -->
+<!--   SM_CREATION_DATE			DATE, -->
+<!--   SM_COUNTRY_ID				INT, -->
+<!--   SM_STATUS					TINYINT,  -->
+	    
+	</class>
+</hibernate-mapping>
+

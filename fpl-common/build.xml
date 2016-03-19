@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fpl-common">
+
+	<path id="classpath.compile">
+		<pathelement location="${fpl.lib}/commons-lang-2.6.jar" />
+		<pathelement location="${fpl.lib}/commons-collections-3.2.1.jar" />
+		<pathelement location="${fpl.lib}/commons-validator-1.4.0.jar" />
+		<pathelement location="${fpl.lib}/commons-beanutils-1.8.3.jar" />
+		<pathelement location="${fpl.lib}/gson-2.2.2.jar" />
+	</path>
+	
+ 	<property name="classpath.compile" refid="classpath.compile" />
+ 	
+	<import file="${build.commons}/build-lib.xml" />
+	
+</project>

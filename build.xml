@@ -1,0 +1,86 @@
+<project name="FPL" default="fpl-war">
+
+	<property file="${basedir}/build.properties"/>
+	<property name="class.dir" value="build/classes"/>
+
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${class.dir}"/>
+		<mkdir dir="dist" />
+	</target>
+
+	<target name="compile" depends="init" >
+		<javac destdir="${class.dir}" debug="true" srcdir="${src.dir}">
+			<classpath refid="compile.classpath"/>
+		</javac>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-common}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-controller}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-core}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-interfaces}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-persistence}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-services}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		<copy todir="${class.dir}">
+			<fileset dir="${fpl-util}">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="fpl-war" depends="compile">
+		<war destfile="dist/fpl.war" webxml="${web.dir}/WEB-INF/web.xml">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+			<classes dir="${class.dir}"/>
+		</war>
+	</target>
+	
+	<target name="clean">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>
+
+</project>

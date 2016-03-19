@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.financialplanner.FplCompanyConfig"  table="FPL_TR_CONFIG_FINPLAN_COM" lazy="false">
+	    <id name="id" type="java.lang.Long" column="FC_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_COMDOMAIN_CONFIG_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="financialPlannerId"	column="FC_FP_ID"	type="java.lang.Long" />
+	    <property name="companyId"			column="FC_CO_ID"	type="java.lang.Long" />
+	</class>
+</hibernate-mapping>

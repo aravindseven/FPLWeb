@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.profile.address.Address" table="FPL_MA_ADDRESS" lazy="false">
+	    <id name="id" type="java.lang.Long" column="AD_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_ADDRESS_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="block"  		column="AD_BLOCK"			type="java.lang.String"/>    
+	    <property name="buildingName"  	column="AD_BUILDING_NAME"	type="java.lang.String"/>    
+	    <property name="street"  		column="AD_STREET"			type="java.lang.String"/>    
+	    <property name="city"  			column="AD_CITY"			type="java.lang.String"/>    
+	    <property name="state"  		column="AD_STATE"			type="java.lang.String"/> 
+	    <property name="postalCode"  	column="AD_POSTAL_CODE"		type="java.lang.String"/>   
+	    <property name="country"  		column="AD_COUNTRY"			type="java.lang.String"/>
+	    <property name="longitude"  	column="AD_LONGITUDE"		type="java.lang.Float"/>    
+	    <property name="latitude"  		column="AD_LATITUDE"		type="java.lang.Float"/>    
+	    
+	        
+	</class>
+</hibernate-mapping>
+

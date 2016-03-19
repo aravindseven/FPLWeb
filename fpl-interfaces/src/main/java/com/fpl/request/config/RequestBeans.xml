@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:component-scan base-package="com.fpl"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="fpl.request.abstractHibernateConfig" class="com.fpl.persistence.support.AbstractHibernateConfig" abstract="true">
+		<property name="templateFactory" ref="hibernate.templateFactory" />
+	</bean>
+	<bean id="fpl.request.requestDAO" class="com.fpl.persistence.request.RequestDAO" parent="fpl.request.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.request.requestFplConfigDAO" class="com.fpl.persistence.request.RequestFplConfigDAO" parent="fpl.request.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.request.requestStatusRefDAO" class="com.fpl.persistence.request.RequestStatusRefDAO" parent="fpl.request.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.request.abstractRequestFinder" class="com.fpl.core.request.support.AbstractRequestFinder" abstract="true" scope="prototype">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO" />
+	</bean>
+	<bean id="fpl.request.customerRequestFinder" class="com.fpl.core.request.customer.CustomerRequestFinder" parent="fpl.request.abstractRequestFinder" scope="prototype">
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+	</bean>
+	<bean id="fpl.request.requestFPLFinder" class="com.fpl.core.request.financialplanner.RequestFPLFinder" parent="fpl.request.abstractRequestFinder" scope="prototype">
+		<property name="fplRequestQueryDAO" ref="fpl.request.fplRequestQueryDAO" />
+		<property name="requestFplConfigDAO" ref="fpl.request.requestFplConfigDAO" />
+	</bean>
+	<bean id="fpl.request.fplRequestQueryDAO" class="com.fpl.persistence.financialplanner.FPLRequestQueryDAO" scope="prototype">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean id="fpl.request.requestCreator" class="com.fpl.core.request.customer.RequestCreator" scope="prototype">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="transformer" ref="fpl.request.requestTransformer" />
+		<property name="mailSender" ref="fpl.request.requestCreationMailSender" />
+	</bean>
+	<bean id="fpl.request.requestTransformer" class="com.fpl.core.request.customer.RequestTransformer" scope="prototype">
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+	</bean>
+	<bean id="fpl.request.requestCreationMailSender" class="com.fpl.core.request.support.RequestCreationMailSender" scope="prototype">
+		<property name="fplDao" ref="fpl.profile.financialPlannerDAO" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+	</bean>
+	<bean id="fpl.request.statusDAO" class="com.fpl.persistence.status.StatusDAO" parent="fpl.request.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.request.requestStatusRefQueryDAO" class="com.fpl.persistence.request.RequestStatusRefQueryDAO" scope="prototype">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean id="fpl.request.fplRespondReqTransformer" class="com.fpl.core.request.financialplanner.FPLRespondReqStatusRefTransformer" scope="prototype">
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO" />
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+	</bean>
+	<bean id="fpl.request.fplRequestManager" class="com.fpl.core.request.financialplanner.FplRequestManager" scope="prototype">
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="transformer" ref="fpl.request.fplRespondReqTransformer" />
+		<property name="requestStatusRefQueryDAO" ref="fpl.request.requestStatusRefQueryDAO" />
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO" />
+		
+	</bean>
+	<bean id="fpl.request.customerRequestManager" class="com.fpl.core.request.customer.CustomerRequestManager" scope="prototype">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="transformer" ref="fpl.request.fplRespondReqTransformer" />
+	</bean>
+</beans>

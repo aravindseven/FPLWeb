@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.fpl.status.Status" table="FPL_MA_STATUS" lazy="false">
+	    <id name="id" type="java.lang.Long" column="ST_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_STATUS_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="description"	column="ST_DESCRIPTION"		type="java.lang.String"/>
+	    <property name="disDescription"	column="ST_DIS_DESC"		type="java.lang.String"/>
+	    <property name="statusMasterId"	column="ST_SM_ID"			type="java.lang.Long"/>
+	    <many-to-one name="statusMaster" class="com.fpl.status.StatusMaster" lazy="false" insert="false" update="false">
+	    	<column name="ST_SM_ID" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>

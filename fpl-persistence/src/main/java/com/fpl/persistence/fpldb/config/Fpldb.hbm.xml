@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.fpldb.Fpldb" table="FPL_FDB" lazy="false">
+	    <id name="id" type="java.lang.Long" column="FDB_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_MA_COUNTRY_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="name"  				column="FDB_NAME"					type="java.lang.String"/>    
+	    <property name="registrationId"  	column="FDB_REGISTRATION_ID"		type="java.lang.String"/>    
+	    <property name="location"  			column="FDB_LOCATION"				type="java.lang.String"/>    
+	    <property name="proof"  			column="FDB_PROOFTYPE"				type="java.lang.String"/>    
+	    <property name="proofId"  			column="FDB_PROOF"					type="java.lang.Float"/> 
+	    <property name="website"  			column="FDB_WEBSITE"				type="java.lang.String"/>   
+	    
+	    <property name="country"  			column="FDB_COUNTRY"				type="java.lang.String"/> 
+	    <property name="postalCode"  		column="FDB_POSTAL_CODE"			type="java.lang.String"/> 
+	    <property name="block"  			column="FDB_BLOCK"					type="java.lang.String"/> 
+	    <property name="buildingName"  		column="FDB_BUILDING_NAME"			type="java.lang.String"/>   
+	    <property name="street" 			column="FDB_STREET"					type="java.lang.String"/>   
+	    <property name="city"  				column="FDB_CITY"					type="java.lang.String"/>
+	    
+	    <property name="state"  			column="FDB_STATE"					type="java.lang.String"/>   
+	    <property name="mobile"  			column="FDB_PH_NUMBER_1"			type="java.lang.String"/>   
+	    <property name="landline"  			column="FDB_PH_NUMBER_2"			type="java.lang.String"/>   
+	    <property name="email"  			column="FDB_EMAIL"					type="java.lang.String"/>   
+	    
+	    <property name="primaryFirstName"  	column="FDB_PERSON_FIRST_1"			type="java.lang.String"/>   
+	    <property name="primarySecondName"  column="FDB_PERSON_SECOND_1"		type="java.lang.String"/>   
+	    <property name="primaryMobile"  	column="FDB_NUMBER_PERSON_1"		type="java.lang.String"/>   
+	    <property name="primaryPosition"  	column="FDB_NUMBER_POSITION_1"		type="java.lang.String"/>   
+	    <property name="primaryProof"  		column="FDB_NUMBER_PROOF_1"			type="java.lang.String"/>   
+	    <property name="primaryProofId"  	column="FDB_NUMBER_ID_1"			type="java.lang.String"/>
+	       
+	    <property name="altFirstName"  		column="FDB_PERSON_FIRST_2"			type="java.lang.String"/>   
+	    <property name="altSecondName"  	column="FDB_PERSON_SECOND_2"		type="java.lang.String"/>   
+	    <property name="altMobile"  		column="FDB_NUMBER_PERSON_2"		type="java.lang.String"/>   
+	    <property name="altPosition"  		column="FDB_NUMBER_POSITION_2"		type="java.lang.String"/>   
+	    <property name="altProof"  			column="FDB_NUMBER_PROOF_2"			type="java.lang.String"/>   
+	    <property name="altProofId"  		column="FDB_NUMBER_ID_2"			type="java.lang.String"/>
+	        
+	</class>
+</hibernate-mapping>
+

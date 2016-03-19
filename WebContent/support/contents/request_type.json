@@ -1,0 +1,16 @@
+[{
+	"name" : "Car Loan",
+	"value" : "car_loan"
+}, {
+	"name" : "Bike Loan",
+	"value" : "bike_loan"
+}, {
+	"name" : "Life Insurance",
+	"value" : "life_insurance"
+}, {
+	"name" : "Car Insurance",
+	"value" : "car_insurance"
+}, {
+	"name" : "Bike Insurance",
+	"value" : "bike_insurance"
+}]

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:component-scan base-package="com.fpl"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="fpl.policy.abstractHibernateConfig" class="com.fpl.persistence.support.AbstractHibernateConfig" abstract="true">
+		<property name="templateFactory" ref="hibernate.templateFactory" />
+	</bean>
+		<bean id="fpl.policy.policyDAO2" class="com.fpl.persistence.policy.PolicyDAO2" parent="fpl.policy.abstractHibernateConfig" scope="prototype" />
+	
+	<bean id="fpl.policy.policyDAO" class="com.fpl.persistence.policy.PolicyDAO" parent="fpl.policy.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.policy.policyTransformer2" class="com.fpl.core.policy.support.Policytransformer2">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="companyDAO" ref="fpl.profile.companyDAO" />
+	</bean>
+	<bean id="fpl.policy.policyTransformer" class="com.fpl.core.policy.support.PolicyTransformer">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="companyDAO" ref="fpl.profile.companyDAO" />
+	</bean>
+	<bean id="fpl.policy.policyPersister" class="com.fpl.core.policy.PolicyPersister">
+		<property name="policyDAO" ref="fpl.policy.policyDAO" />
+		<property name="policyDAO2" ref="fpl.policy.policyDAO2" />
+		<property name="transformer" ref="fpl.policy.policyTransformer" />
+		<property name="transformer2" ref="fpl.policy.policyTransformer2" />
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+	</bean>
+	<bean id="fpl.policy.policyFinder" class="com.fpl.core.policy.PolicyFinder">
+		<property name="policyDAO" ref="fpl.policy.policyDAO" />
+		<property name="policyDAO2" ref="fpl.policy.policyDAO2" />
+		<property name="financialPlannerDAO" ref="fpl.profile.financialPlannerDAO" />
+		<property name="customerDAO" ref="fpl.profile.customerDAO" />
+		<property name="transformer" ref="fpl.policy.newPolicyTransformer" />
+		<property name="loginQueryDAO" ref="fpl.aop.login.loginQueryDAO" />
+	</bean>
+	<bean id="fpl.policy.newPolicyTransformer" class="com.fpl.core.policy.support.NewPolicyParamTransformer">
+	</bean>
+</beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="fpl.paging.abstractHibernateConfig" class="com.fpl.persistence.support.AbstractHibernateConfig" abstract="true" scope="prototype">
+		<property name="templateFactory">
+			<bean class="com.fpl.hibernate.HibernateTemplateFactory" factory-method="getInstance" scope="prototype"/>
+		</property>
+	</bean>
+	<bean id="fpl.paging.criteriaPagingDAOSupport" class="com.fpl.persistence.paging.support.CriteriaPagingDAOSupport" parent="fpl.paging.abstractHibernateConfig" scope="prototype" />
+</beans>

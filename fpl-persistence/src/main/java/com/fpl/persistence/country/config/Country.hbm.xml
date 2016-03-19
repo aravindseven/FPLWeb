@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.country.Country" table="FPL_MA_COUNTRY" lazy="false">
+	    <id name="id" type="java.lang.Long" column="CO_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_MA_COUNTRY_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="name"  			column="CO_NAME"					type="java.lang.String"/>    
+	    <property name="isoCode"  		column="CO_ISO_CODE"				type="java.lang.String"/>    
+	    <property name="currency"  		column="CO_CURRENCY"				type="java.lang.String"/>    
+	    <property name="dialingCode"  	column="CO_DIALING_CODE"			type="java.lang.String"/>    
+	    <property name="saleTaxRate"  	column="CO_SALE_TAX_RATE"			type="java.lang.Float"/> 
+	    <property name="particular1"  	column="CO_PARTICULAR_1"			type="java.lang.String"/>   
+	    <property name="particular2"  	column="CO_PARTICULAR_2"			type="java.lang.String"/> 
+	    <property name="particular3"  	column="CO_PARTICULAR_3"			type="java.lang.String"/> 
+	    <property name="particular4"  	column="CO_PARTICULAR_4"			type="java.lang.String"/> 
+	    <property name="governingBody"  column="CO_GOVERNING_BODY"			type="java.lang.String"/>   
+	    <property name="govBodyWebsite" column="CO_GOVG_BODY_WEBSITE"		type="java.lang.String"/>   
+	    <property name="note"  			column="CO_NOTE"					type="java.lang.String"/>    
+	</class>
+</hibernate-mapping>
+

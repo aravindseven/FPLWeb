@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- title and meta -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="description" content="In this lab, we make a responsive content slider jQuery plugin" />
+<title>FPl Signup</title>
+    
+<!-- css -->
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="support/css/base.css" />
+<link rel="stylesheet" href="support/css/style.css" />
+<link rel="stylesheet" href="support/css/style2.css" />
+<link href="support/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="support/css/styless.css"/>
+<link rel="stylesheet" href="support/css/font-awesome/css/font-awesome.min.css" />
+    
+<!-- js -->
+<script type="text/javascript" src="support/script/angularJS/angular.min.js"></script>
+
+<script src="support/js/jquery-1.9.1.min.js"></script>
+<script src="support/js/jquery.cslide.js" type="text/javascript"></script>
+<script type="text/javascript" src="support/script/custom/app.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script type="text/javascript" src="support/script/jQuery/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="support/script/jQuery/jquery.cookie.js"></script>
+		<script type="text/javascript" src="support/script/jQuery/jquery.center.min.js"></script>
+		<script type="text/javascript" src="support/script/jQuery/jquery.msg.js"></script>
+		<script type="text/javascript" src="support/script/bootStrapJS/bootstrap.min.js"></script>
+		<script type="text/javascript" src="support/script/custom/util.js"></script>
+		<script type='text/javascript' src="support/script/angularJS/ng-file-upload-shim.js"></script>
+        <script type='text/javascript' src="support/script/angularJS/ng-file-upload.js"></script>
+		<script type="text/javascript" src="support/controller/UserRegisterController.js"></script>
+		<script type="text/javascript" src="support/js/jquery.cslide.js"></script>
+		
+ <script>
+$(document).ready(function(){
+    $("#cslide-slides").cslide();
+});
+$(window).load(function(){
+	$('#custom_trigger').trigger('click');
+}); 
+ </script>
+
+</head>
+<body ng-app="fpl" ng-controller="UserRegisterController as uRegister" class="scrollbody">
+<!-- headder start -->
+<header class="indextrns hidden-xs hidden-sm">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4 co-xs-12">
+				<div class="logo-head">
+					<a href="index.html"><img src="support/images/logo2.png" alt=""/></a>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 co-xs-12">
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 co-xs-12">
+			</div>
+		</div>
+	</div>
+</header>
+<!-- /header end -->
+
+
+<div id="main" >
+    <div class="container login_container">
+        <section id="cslide-slides" class="cslide-slides-master clearfix">
+            
+            <div class="cslide-slides-container clearfix"> 
+                <div class="cslide-slide">
+                    <div class="middle-contents">
+							<span class="cslide-next pull-right justss" id="custom_trigger"><img src="support/images/back1.jpg" alt=""/></span>
+						<div class="row">
+							<div class="grandelogo col-lg-2 col-lg-offset-5 logo">
+								<div class="logo-mob">
+									<img src="support/images/popup-logo.png" alt=""/>
+								</div>
+							</div>
+						</div>
+				<div class="row">
+					<form name="userForm"  autocomplete="off" ng-init="uRegister.checkCountry(user)">
+					<div class="modal-contents">
+						<div class="cus-reg text-center">
+							<div class="row">
+									<img src="support/images/customer_mini.png" alt="" style="image-align:center;"/>				
+									<span class="ref-sign">CUSTOMER REGISTRATION</span>
+							</div>
+							
+						</div>
+						<div class="firstcon-model">
+							<div class="row">
+								<div class="rebut">
+								
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div  class="tous">You are registering as</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+										<input class="check" type="radio" name="content" ng-click="type='cust_individual';uRegister.register1()"></input><span class="checke" >Individual</span>
+										<input class="checks" type="radio" name="content" ng-click="type='cust_corporate';uRegister.register1()"></input><span class="checkes">Corporate</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-sign">
+						 <div class="row">
+							
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                                   <label class="overlap_label">First Name</label>
+                                     <input type="text" name="name" class="form-control" ng-model="user.firstname" required>
+                                     <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block"> firstname is required.</p>
+                                   </div>
+							
+								
+								<div class="form-group col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm.lname.$invalid && !userForm.lname.$pristine }">
+									<label class="overlap_label">Last Name</label>
+								    <input type="name" name="lname" class="form-control" id="exampleInputEmail1"  ng-model=user.lastname required>
+								<p ng-show="userForm.lname.$invalid && !userForm.lname.$pristine" class="help-block">lastname is required.</p>
+								</div>
+								
+								 <div class="form-group col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                                  <label class="overlap_label">E-Mail</label>
+                                  <input type="email" name="email" class="form-control" ng-model=user.email required>
+                                  <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                                    </div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12"  ng-class="{ 'has-error' : userForm.answer.$invalid && !userForm.answer.$pristine }">
+									<label class="overlap_label">What is Your mother name?</label>
+									<input type="name" name="answer" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="user.regSecretQuestionAnswer" required>
+		                           <p ng-show="userForm.answer.$invalid && !userForm.answer.$pristine" class="help-block">Answer is required</p>
+								</div>
+								<div class="form-group col-md-12 col-sm-12 col-xs-12">
+									<div class="g-recaptcha" data-sitekey="6LeFJAoTAAAAAK9EOWdlbe3-E6PcobyfOSNAH4oR" data-callback="alert('Captcha Verified')"></div>
+			        			</div>
+							</div>
+						</div>
+						<div class="sec-cont text-center">
+							<input type="checkbox" name="vehicle" value="Bike"><span class="hike">I have read and accepted the Terms & Conditions</span>
+						</div>
+			             
+			        	    
+			          <div id = "successMSG1" class="busd text-center" style='display:none'>
+						
+						<p id="Content0" class="psucc" style="font-family: SansRegular; font-size: 15px;display:none;">
+						<i class="fa fa-check"></i>
+						</p>
+						
+						<p id="Content2"  class="pfail" style="font-family: SansRegular; font-size: 15px;display:none;">
+						<i class="fa fa-times"></i>
+						</p>
+								
+						</div>
+			               
+					</div>
+					
+						<a href="" data-toggle="tab"><button type="submit" style="margin-top: 15px;" ng-click="uRegister.register(user)" ng-disabled="!userForm.$valid"  class="btn btn-default reg-but"><span class="hai">Register</span></button></a>
+					
+					<div class="foot-allrights">
+						<div class="row">
+							<div class="allrights">All rights reserved to FPL 2015</div>
+						</div>
+					</div>
+					</form>
+				</div>
+				
+				
+			</div>
+			
+                
+     </div>
+			 
+                
+                <div class="cslide-slide">
+                   <div class="middle-contentss">
+						<a href="FPLLogin.jsp" class="home"><img src="support/images/back1.jpg" alt=""/></a>
+				   <div class="row">
+							<div class="grandelogo col-lg-2 col-lg-offset-5">
+								<div class="logo-mob">
+									<img src="support/images/popup-logo.png" alt=""/>
+								</div>
+							</div>
+						</div>
+				  	<div class="row">
+							<div class="signup">
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div class="customer"><a class="active" href="javascript: void(0)"><span class="cslide-prev"><img src="support/images/customer.png" alt=""></span></a>
+										<h4 class="pwd">Customer</h4>
+										</div>
+										
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div class="finacial"><a class="active" href="javascript: void(0)"><span class="cslide-next"><img src="support/images/finplan.png" alt=""></a>
+										<h4 class="pwd">Financial Planner</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="foot-allright">
+								<div class="row">
+									<div class="allright">All rights reserved to FPL 2015</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+	 <div class="cslide-slide">
+                    <div class="middle-contents">
+							<span class="cslide-prev pull-right justss"><img src="support/images/back1.jpg" alt=""/></span>
+						<div class="row">
+							<div class="grandelogo col-lg-2 col-lg-offset-5 logo">
+								<div class="logo-mob">
+									<img src="support/images/popup-logo.png" alt=""/>
+								</div>
+							</div>
+						</div>
+				<div class="row">
+					<form name="userForm1"  autocomplete="off" ng-init="uRegister.checkCountry(user)">
+					<div class="modal-contents">
+						<div class="cus-reg text-center">
+							<div class="row">
+									<img src="support/images/finplanmini.png" alt="" style="image-align:center;"/>				
+										<span class="fin-sign">FINANCIAL PLANNER REGISTRATION</span>
+							</div>
+							
+						</div>
+						<div class="firstcon-model">
+							<div class="row">
+								<div class="rebut">
+								
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div  class="tous">You are registering as</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+										<input class="check" type="radio" name="content"  ng-click="type='fp_individual';"></input><span class="checke">Individual</span>
+										<input class="checks" type="radio" name="content"  ng-click="type='fp_corporate';"></input><span class="checkes">Corporate</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-sign">
+						 <div class="row">
+							
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm1.name.$invalid && !userForm1.name.$pristine }">
+                                   <label class="overlap_label">First Name</label>
+                                     <input type="text" name="name" class="form-control" ng-model="user.firstname" required>
+                                     <p ng-show="userForm1.name.$invalid && !userForm1.name.$pristine" class="help-block"> firstname is required.</p>
+                                   </div>
+							
+								
+								<div class="form-group col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm1.lname.$invalid && !userForm1.lname.$pristine }">
+									<label class="overlap_label">Last Name</label>
+								    <input type="name" name="lname" class="form-control" id="exampleInputEmail1"  ng-model=user.lastname required>
+								<p ng-show="userForm1.lname.$invalid && !userForm1.lname.$pristine" class="help-block">lastname is required.</p>
+								</div>
+								
+								 <div class="form-group col-md-6 col-sm-6 col-xs-12" ng-class="{ 'has-error' : userForm1.email.$invalid && !userForm1.email.$pristine }">
+                                  <label class="overlap_label">E-Mail</label>
+                                  <input type="email" name="email" class="form-control" ng-model=user.email required>
+                                  <p ng-show="userForm1.email.$invalid && !userForm1.email.$pristine" class="help-block">Enter a valid email.</p>
+                                    </div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12"  ng-class="{ 'has-error' : userForm1.answer.$invalid && !userForm1.answer.$pristine }">
+									<label class="overlap_label">What is Your mother name?</label>
+									<input type="name" name="answer" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="user.regSecretQuestionAnswer" required>
+		                           <p ng-show="userForm1.answer.$invalid && !userForm1.answer.$pristine" class="help-block">Answer is required</p>
+								</div>
+							</div>
+						</div>
+						<div class="sec-cont text-center">
+							<input type="checkbox" name="vehicle" value="Bike"><span class="hike">I have read and accepted the Terms & Conditions</span>
+						</div>
+						<!-- <div class="invalid">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<div class="invalid-text">
+										ERROR: Invalid domain for site key
+									</div>
+								</div>
+								
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<div class="refresh"><img src="support/images/refresh.png" alt=""/></div>
+									<div class="captcha-privacy">reCAPTCHA<br/>Terms-privacy</div>
+								</div>
+								
+							</div>
+						</div> -->
+					 <div class="g-recaptcha" data-sitekey="6LeFJAoTAAAAAK9EOWdlbe3-E6PcobyfOSNAH4oR" data-callback="alert('Captcha Verified')"></div>
+					 
+					 <div id = "successMSG2" class="busd text-center" style='display:none'>
+						
+						<p id="Content1" class="psucc" style="font-family: SansRegular; font-size: 15px;display:none;">
+						<i class="fa fa-check"></i>
+						</p>
+						
+						<p id="Content4" class="pfail" style="font-family: SansRegular; font-size: 15px;display:none;">
+						<i class="fa fa-times"></i>
+						</p>
+								
+						</div>
+					
+					</div>
+					
+						  <a href="" data-toggle="tab"><button type="submit" ng-click="uRegister.register(user)" ng-disabled="!userForm1.$valid"  class="btn btn-default reg-but"><span class="hai">Register</span></button></a>
+					           
+					<div class="foot-allrights">
+						<div class="row">
+							<div class="allrights">All rights reserved to FPL 2015</div>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+        </div>
+        </section><!-- /sliding content section -->
+    </div>
+</div><!-- #main -->
+
+
+<footer>
+<div class="container-fluid">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<p class="foot">All rights reserved to FPL 2015</p>
+</div>
+<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+             <p class="fore">About Us |&nbsp; Terms of Use |&nbsp; Privacy Policy |&nbsp;
+              Acceptable Use Policy |&nbsp;
+              Terms of Purchase |&nbsp;
+              Site Map |&nbsp;
+               Feedback |&nbsp;
+             RSS Feed |&nbsp;
+              Contact Us
+           </ul>
+           </div>
+   
+</div>
+</footer><!-- /footer -->
+
+
+<!-- /#wrapper -->
+<!-- <script>
+function myFunction() {
+    alert("Success! Please check your Email.");
+	
+} -->
+
+<!-- </script> -->
+</body>
+</html>

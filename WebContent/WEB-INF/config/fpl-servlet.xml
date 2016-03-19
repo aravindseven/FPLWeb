@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:spring-configured />
+	<context:component-scan base-package="com.fpl"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="ajaxViewResolver" class="com.fpl.controller.support.AjaxViewResolver">
+		<property name="ajaxView">
+			<bean class="com.fpl.controller.support.AjaxView" />
+		</property>
+		<property name="ajaxPrefix" value="fplajax_"></property>
+	</bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+        <property name="suffix" value="" />
+	</bean>
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+	<mvc:interceptors >
+		<mvc:interceptor>
+			<mvc:mapping path="/**/*.do" />
+			<bean id="authenticationHandlerInterceptor" class="com.fpl.aop.AuthenticationHandlerInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<import resource="classpath*:com/fpl/hibernate/config/spring_hibernate_config.xml" />
+	<import resource="classpath*:com/fpl/login/config/LoginBeans.xml" />
+	<import resource="classpath*:com/fpl/profile/config/ProfileBean.xml" />
+	<import resource="classpath*:com/fpl/request/config/RequestBeans.xml" />
+	<import resource="classpath*:com/fpl/policy/PolicyBeans.xml" />
+	<import resource="classpath*:com/fpl/core/communication/config/CommunicationBeans.xml" />
+	<import resource="classpath*:com/fpl/subscription/config/SubscriptionBean.xml" />
+	<import resource="classpath*:com/fpl/core/tips/config/TipsBeans.xml" />
+	
+	<bean name="fpl.default.appContextProvider" class="com.fpl.factory.DefaultApplicationContextProvider" factory-method="getInstance" />
+	
+	<!-- FPL Controller start -->
+	<!-- Communication module Controller  -->
+	<bean name="/postMessages.do" class="com.fpl.controller.communication.PostMessagesController" /> 
+  <bean name="/savetips.do" class="com.fpl.controller.admin.tips.SaveTipsController" /> 
+  <bean name="/gettips.do" class="com.fpl.controller.admin.tips.GetTipsController" /> 
+  <bean name="/gettipsbyid.do" class="com.fpl.controller.admin.tips.GetTipsByIdController" /> 
+  <bean name="/updatetips.do" class="com.fpl.controller.admin.tips.UpdateTipsController" /> 
+  <bean name="/deletetipsbyid.do" class="com.fpl.controller.admin.tips.DeleteTipsController" /> 
+  <bean name="/getInboxMessages.do" class="com.fpl.controller.communication.GetInboxMessagesController" /> 
+  <bean name="/getSentMail.do" class="com.fpl.controller.communication.GetSentMailController" /> 
+  <bean name="/getSingleMail.do" class="com.fpl.controller.communication.GetMailController" /> 
+  <bean name="/movetotrash.do" class="com.fpl.controller.communication.MovetoTrashController" /> 
+  <bean name="/undofromtrash.do" class="com.fpl.controller.communication.UndoFromTrashController" /> 
+  <bean name="/getTrashMessages.do" class="com.fpl.controller.communication.GetTrashMessagesController" /> 
+  <bean name="/deleteMail.do" class="com.fpl.controller.communication.DeleteMailController" /> 
+  <bean name="/savetodraft.do" class="com.fpl.controller.communication.SavetoDraftController" /> 
+  <bean name="/getDraftMessages.do" class="com.fpl.controller.communication.GetDraftController" /> 
+  <bean name="/readmailinbox.do" class="com.fpl.controller.communication.MailOpenController" /> 
+  <bean name="/discardmail.do" class="com.fpl.controller.communication.MailDiscardController" /> 
+  <bean name="/savemailsettings.do" class="com.fpl.controller.communication.UserSettingsController" /> 
+  <bean name="/getSettings.do" class="com.fpl.controller.communication.GetUserSettings" /> 
+  <bean name="/movetoarchive.do" class="com.fpl.controller.communication.MovetoArchiveController" /> 
+  <bean name="/getArchiveMessages.do" class="com.fpl.controller.communication.GetArchiveController" /> 
+  <bean name="/changeStar.do" class="com.fpl.controller.communication.ChangeStarController" /> 
+  <bean name="/replyMail.do" class="com.fpl.controller.communication.ReplyMailController" /> 
+  <bean name="/getchatrooms.do" class="com.fpl.controller.communication.ChatroomsController" /> 
+  <bean name="/generatechatrooms.do" class="com.fpl.controller.communication.CreateChatRoomsController" /> 
+  <bean name="/savechatmessages.do" class="com.fpl.controller.communication.SaveChatController" /> 
+  <bean name="/getNotificationMessages.do" class="com.fpl.controller.communication.GetNotificationChatController" /> 
+  <bean name="/statuschecking.do" class="com.fpl.controller.communication.StatusCheckController" /> 
+  <bean name="/savechat.do" class="com.fpl.controller.communication.StorechatMessages" /> 
+  <bean name="/getuserdetails.do" class="com.fpl.controller.communication.GetuserdetailsController" /> 
+   <bean name="/savetodraftfromdraft.do" class="com.fpl.controller.communication.UpdatedraftController" />
+  <bean name="/statusmsgupdate.do" class="com.fpl.controller.login.UpdateUserStatusController">
+  <property name="loginServices" ref="fpl.controller.loginServices" /> 
+  </bean>
+  <bean name="/setreadstatus.do" class="com.fpl.controller.communication.ReadstatusController" /> 
+  <bean name="/getreadstatus.do" class="com.fpl.controller.communication.GetReadstatusController" /> 
+
+	<!-- Login module Controller  -->
+	<bean name="/loginFpl.do" class="com.fpl.controller.login.LoginFplController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+		<property name="loginrecord" ref="fpl.controller.loginRecordTO"/>
+		<property name="auditServices" ref="fpl.controller.loginAuditServices"/>
+	</bean>
+	<bean name="/resetlogin.do" class="com.fpl.controller.login.LoginResetController">
+	<property name="loginSupportDAO" ref="fpl.login.loginSupportDAO"/>
+	</bean>
+	<bean name="/recoveryUserName.do" class="com.fpl.controller.login.UserNameRecoveryController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<bean name="/recoveryPassword.do" class="com.fpl.controller.login.PasswordRecoveryController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<bean name="/userRegister.do" class="com.fpl.controller.login.LoginRegistrationController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<bean name="/userActivate.do" class="com.fpl.controller.login.ActivateUserController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<bean name="/fplPasswordReset.do" class="com.fpl.controller.login.PasswordResetController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+  	</bean>
+	<bean name="/passwordResetRequest.do" class="com.fpl.controller.login.InitPasswordResetController">
+		<property name="credentialServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<bean name="/userlogout.do" class="com.fpl.controller.login.FPLLogoutController">
+		<property name="loginSupportDAO" ref="fpl.login.loginSupportDAO"/>
+	</bean>
+	<bean name="/changePassword.do" class="com.fpl.controller.login.ChangePasswordController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+  	</bean>
+	<bean name="/updateLoginDetail.do" class="com.fpl.controller.login.UpdateLoginDetailController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+  	</bean>
+	<bean name="/fetchLoginDetail.do" class="com.fpl.controller.login.GetLoginDetailController">
+  	</bean>
+  	<bean name="/getLoggedInUser.do" class="com.fpl.controller.login.GetLoggedInUserController">
+  	</bean>
+	<bean name="/verifySecEmail.do" class="com.fpl.controller.login.SecondaryEmailVerifierController">
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+  	</bean>
+	<bean name="/sendSecEmailOtp.do" class="com.fpl.controller.login.InitSecEmailVerficationController">
+		<property name="credentialServices" ref="fpl.controller.loginServices"/>
+  	</bean>
+	
+	<!-- Profile module Controller  -->
+	<bean name="/redirectProfileCreation.do" class="com.fpl.controller.profile.InitiProfileController">
+		<property name="fetcherMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.profile.customerFetcher" />
+				<entry key="cust_individual" value-ref="fpl.profile.customerFetcher" />
+				<entry key="fp_individual" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_corporate" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_admin" value-ref="fpl.profile.adminFetcher" />
+			</map>
+		</property>
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/redirectAjaxProfileCreation.do" class="com.fpl.controller.profile.InitiAjaxProfileController">
+		<property name="fetcherMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.profile.customerFetcher" />
+				<entry key="cust_individual" value-ref="fpl.profile.customerFetcher" />
+				<entry key="fp_individual" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_corporate" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_admin" value-ref="fpl.profile.adminFetcher" />
+			</map>
+		</property>
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<!-- <bean name="/custProfileCreation.do" class="com.fpl.controller.profile.customer.CustomerProfileCreationController">
+		<property name="registerService" ref="fpl.profile.customerRegisterService" />
+	</bean> -->
+	<bean name="/custAjaxProfileCreation.do" class="com.fpl.controller.profile.customer.CustomerAjaxProfileCreationController">
+		<property name="registerService" ref="fpl.profile.customerRegisterService" />
+		<property name="loginServices" ref="fpl.controller.loginServices"/>
+	</bean>
+	<!-- <bean name="/fplProfileCreation.do" class="com.fpl.controller.profile.financialplanner.FPLProfileCreationController">
+		<property name="registerService" ref="fpl.profile.fplRegisterService" />
+	</bean> -->
+	<bean name="/fplAjaxProfileCreation.do" class="com.fpl.controller.profile.financialplanner.FPLAjaxProfileCreationController">
+		<property name="registerService" ref="fpl.profile.fplRegisterService" />
+	</bean>
+	<bean name="/adminProfileCreation.do" class="com.fpl.controller.profile.admin.AdminProfileCreationController">
+		<property name="registerService" ref="fpl.profile.adminRegisterService" />
+	</bean>
+	<bean name="/initSearchProfile.do" class="com.fpl.controller.profile.admin.InitSearchProfileController">
+	</bean>
+	<bean name="/searchProfile.do" class="com.fpl.controller.profile.admin.SearchProfileController">
+		<property name="profileSearcherService" ref="fpl.profile.profileSearcherService" />
+	</bean>
+	<bean name="/activateProfile.do" class="com.fpl.controller.profile.admin.ActivateProfileController">
+		<property name="profileManager" ref="fpl.profile.adminProfileManager" />
+	</bean>
+	<bean name="/deActivateProfile.do" class="com.fpl.controller.profile.admin.DeActivateProfileController">
+		<property name="profileManager" ref="fpl.profile.adminProfileManager" />
+	</bean>
+	
+	<!-- Request Module Controller -->
+	<bean name="/initRequest.do" class="com.fpl.controller.request.InitRequestController">
+		<property name="requestFinderMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.request.customerRequestFinder" />
+				<entry key="cust_individual" value-ref="fpl.request.customerRequestFinder" />
+				<entry key="fp_individual" value-ref="fpl.request.requestFPLFinder" />
+				<entry key="fp_corporate" value-ref="fpl.request.requestFPLFinder" />
+				<entry key="fp_admin" value-ref="fpl.request.customerRequestFinder" />
+			</map>
+		</property>
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	
+	 <bean name="/initNewRequest.do" class="com.fpl.controller.request.customer.InitRequestCreationController">
+	</bean>
+	<bean name="/saveRequest.do" class="com.fpl.controller.request.customer.SaveRequestController">
+		<property name="requestCreator" ref="fpl.request.requestCreator" />
+	</bean>
+	<bean name="/getAllDomain.do" class="com.fpl.controller.request.customer.GetDomainListController">
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/checkFPLForRequest.do" class="com.fpl.controller.request.customer.VerifyFinancialPlannerController">
+		<property name="fplFinder" ref="fpl.request.requestFPLFinder" />
+	</bean>
+	<bean name="/newRequestCreate.do" class="com.fpl.controller.request.customer.RequestCreationController">
+		<property name="fplFinder" ref="fpl.request.requestFPLFinder" />
+	</bean>
+	<bean name="/fetchFPLRequest.do" class="com.fpl.controller.request.customer.GetFPLController">
+		<property name="fplFinder" ref="fpl.request.requestFPLFinder" />
+		<property name="fetcherMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.profile.customerFetcher" />
+				<entry key="cust_individual" value-ref="fpl.profile.customerFetcher" />
+				<entry key="fp_individual" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_corporate" value-ref="fpl.profile.fplFetcher" />
+				<entry key="fp_admin" value-ref="fpl.profile.adminFetcher" />
+			</map>
+		</property>
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+	</bean>
+	<bean name="/getRequestDetail.do" class="com.fpl.controller.request.customer.GetRequestDetailController">
+		<property name="requestFinder" ref="fpl.request.customerRequestFinder" />
+		<property name="customerFinder" ref="fpl.profile.customerFinder" />
+		<property name="fplFinder" ref="fpl.request.requestFPLFinder" />
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/deleteRequest.do" class="com.fpl.controller.request.customer.DeleteRequestController">
+		<property name="requestDAO" ref="fpl.request.requestDAO" />
+	</bean>
+	<bean name="/getRequestHistory.do" class="com.fpl.controller.request.customer.GetRequestActivityHistoryController">
+		<property name="requestStatusRefQueryDAO" ref="fpl.request.requestStatusRefQueryDAO" />
+	</bean>
+	<bean name="/getRespondedFPL.do" class="com.fpl.controller.request.customer.GetRequestRespondedFPLController">
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+	</bean>
+	<!-- <bean name="/FPLRespondedRequest.do" class="com.fpl.controller.request.financialplanner.RespondRequestController">
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+	</bean> -->
+	<bean name="/closeRequest.do" class="com.fpl.controller.request.customer.CloseRequestController">
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+	</bean>
+	
+	<bean name="/FPLAcceptRequest.do" class="com.fpl.controller.request.financialplanner.FPLAcceptRequestController">
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+	</bean>
+	<bean name="/FPLRejectRequest.do" class="com.fpl.controller.request.financialplanner.FPLRejectRequestController">
+		<property name="requestManager" ref="fpl.request.fplRequestManager" />
+		<property name="fplProfileFetcher" ref="fpl.profile.fplFetcher" />
+		
+	</bean>
+	<bean name="/SearchRequest.do" class="com.fpl.controller.request.SearchRequestController">
+		<property name="requestFinderMap">
+			<map>
+				<entry key="cust_corporate" value-ref="fpl.request.customerRequestFinder" />
+				<entry key="cust_individual" value-ref="fpl.request.customerRequestFinder" />
+				<entry key="fp_individual" value-ref="fpl.request.requestFPLFinder" />
+				<entry key="fp_corporate" value-ref="fpl.request.requestFPLFinder" />
+				<entry key="fp_admin" value-ref="fpl.request.customerRequestFinder" />
+			</map>
+		</property>
+		<property name="statusDAO" ref="fpl.request.statusDAO" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/ConnectToFPL.do" class="com.fpl.controller.request.customer.RequestConnectController">
+		<property name="requestManager" ref="fpl.request.customerRequestManager" />
+	</bean>
+	
+	<!-- Policy/ERecord Module  -->
+	<bean name="/initPolicy.do" class="com.fpl.controller.policy.InitPolicyController">
+		<property name="policyFinder" ref="fpl.policy.policyFinder" />
+	</bean>
+	<bean name="/initPolicy2.do" class="com.fpl.controller.policy.InitPolicyController2">
+		<property name="policyFinder" ref="fpl.policy.policyFinder" />
+	</bean>
+	<bean name="/initNewPolicy.do" class="com.fpl.controller.policy.InitPolicyCreationController">
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+		<property name="policyFinder" ref="fpl.policy.policyFinder" />
+	</bean>
+	<bean name="/PolicyCreation.do" class="com.fpl.controller.policy.NewPolicyCreationController">
+		<property name="policyPersister" ref="fpl.policy.policyPersister" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/initnewpolicy.do" class="com.fpl.controller.policy.InitNewPolicyCreationController">
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/PolicyCreation2.do" class="com.fpl.controller.policy.NewPolicyCreationController2">
+		<property name="policyPersister" ref="fpl.policy.policyPersister" />
+		<property name="domainDAO" ref="fpl.profile.domainDAO" />
+	</bean>
+	<bean name="/getMyFplOrCustomer.do" class="com.fpl.controller.profile.GetMyFplOrCustomerController">
+		<property name="policyFinder" ref="fpl.policy.policyFinder" />
+	</bean>
+	<bean name="/policyAcceptReject.do" class="com.fpl.controller.policy.PolicyAcceptRejectController">
+		<property name="policyPersister" ref="fpl.policy.policyPersister" />
+	</bean>
+	
+	<!-- Admin Module  -->
+	<bean name="/getCompanyProfile.do" class="com.fpl.controller.profile.company.GetCompanyProfileController">
+	</bean>
+	<bean name="/saveCompanyProfile.do" class="com.fpl.controller.profile.company.CompanyProfileCreationController">
+		<property name="registerService" ref="fpl.profile.companyRegisterService" />
+	</bean>
+	
+	<!-- Communication module -->
+	<bean name="/getChatUserList.do" class="com.fpl.controller.communication.GetUserListController">
+	</bean>
+	
+	<!-- Subsciption Module  -->
+	<bean name="/getCountryProfile.do" class="com.fpl.controller.admin.GetCountryProfileController">
+	</bean>
+	<bean name="/saveAdvTypes.do" class="com.fpl.controller.admin.advertisement.SaveAdvertisementTypeController">
+	</bean>
+	<bean name="/getAdvTypes.do" class="com.fpl.controller.admin.advertisement.GetAdvertisementTypeController">
+	</bean>
+	<bean name="/deleteAdvTypes.do" class="com.fpl.controller.admin.advertisement.DeleteAdvertisementTypeController">
+	</bean>
+	<bean name="/getAdSubscriptions.do" class="com.fpl.controller.admin.advertisement.GetAdSubscriptionController">
+	</bean>
+	<bean name="/deleteAdSubscriptions.do" class="com.fpl.controller.admin.advertisement.DeleteAdSubscriptionController">
+	</bean>
+	<bean name="/deleteFPSubscription.do" class="com.fpl.controller.admin.subscription.DeleteFPSubscriptionController">
+	</bean>
+	<bean name="/saveAdSubscriptions.do" class="com.fpl.controller.admin.subscription.SaveFpSupscriptionController">
+	</bean>
+	<bean name="/getFpSubscription.do" class="com.fpl.controller.admin.subscription.GetFpSubscriptionController">
+	</bean>
+	<bean name="/payNowSubsription.do" class="com.fpl.controller.admin.subscription.PayNowController">
+	</bean>
+	<bean name="/payFpSubsription.do" class="com.fpl.controller.admin.subscription.PayFpSubsriptionController">
+	</bean>
+<!-- <<<<<<< HEAD -->
+	
+	
+	
+<!-- ======= -->
+	<bean name="/listFPSubscription.do" class="com.fpl.controller.admin.subscription.ListFPSubscriptionController">
+	</bean>
+<!-- >>>>>>> refs/remotes/origin/master -->
+</beans>

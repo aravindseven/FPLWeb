@@ -1,0 +1,26 @@
+{
+    "errorMsg": "",
+    "success": "OK",
+    "profiles": [
+        {
+        	"id" : 16,
+            "firstName": "Murali",
+            "lastName": "P",
+            "dob": "1984-06-04",
+            "mobile": 9789019878,
+            "email": "murali.p@yaazhsoft.com",
+            "type" : "cust_individual",
+            "activated": "true"
+        },
+        {
+        	"id" : 18,
+            "firstName": "Dinesh",
+            "lastName": "B",
+            "dob": "1984-06-04",
+            "mobile": 1234567890,
+            "email": "dinesh.b@fuzzy15s.com",
+            "type" : "fp_corporate",
+            "activated": "false"
+        }
+    ]
+}

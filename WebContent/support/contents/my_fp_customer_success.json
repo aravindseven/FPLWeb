@@ -1,0 +1,23 @@
+{
+    "Result": [
+        {
+            "loginId": 17,
+            "firstName": "Dinesh",
+            "lastName": "B",
+            "userType": "FP_INDIVIDUAL",
+            "email": "dinesh.b@fuzzy15s.com",
+            "alternateEmail": "murali.p@yaazhsoft.com",
+            "online": false
+        },
+        {
+            "loginId": 18,
+            "firstName": "Suresh",
+            "lastName": "Kumar",
+            "userType": "FP_CORPORATE",
+            "email": "sureshkumar.n@fuzzy15s.com",
+            "alternateEmail": "murali.p@yaazhsoft.com",
+            "online": false
+        }
+    ],
+    "Status": "Success"
+}

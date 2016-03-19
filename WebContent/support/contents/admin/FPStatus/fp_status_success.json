@@ -1,0 +1,18 @@
+{
+    "errorMsg": "",
+    "success": "OK",
+    "fpList": [
+        {
+            "firstName": "Murali",
+            "lastName": "P",
+            "location" : "chennai",
+            "status": "online"
+        },
+        {
+            "firstName": "Dinesh",
+            "lastName": "B",
+            "location" : "Trichy",
+            "status": "offline"
+        }
+    ]
+}

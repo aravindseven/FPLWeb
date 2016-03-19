@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<mapping resource="com/fpl/persistence/login/config/UserType.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/login/config/SecretQuestion.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/login/config/LoginCredential.hbm.xml"></mapping>
+		 <!-- <mapping resource="com/fpl/persistence/login/config/LoginRecords.hbm.xml"></mapping>  -->
+		<mapping resource="com/fpl/persistence/login/config/LoginSupport.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/login/config/LoginRecovery.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/address/config/Address.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/personal/config/PersonalData.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/customer/config/Customer.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/financialplanner/config/FinancialPlanner.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/financialplanner/config/FplCompanyConfig.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/financialplanner/config/FplDomainConfig.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/domain/config/Domain.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/company/config/Company.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/company/config/CompanyDomainConfig.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/request/config/Request.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/request/config/RequestStatusReference.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/status/config/Status.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/status/config/StatusMaster.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/request/config/RequestFplConfig.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/policy/config/Policy.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/country/config/Country.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/AdvertisementSubscription.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/AdvertisementType.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/FplSubscription.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/PaymentTransaction.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/SubscriptionMaster.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/subscription/config/SubscriptionPaymentTransactionLog.hbm.xml"></mapping>
+		<mapping resource="com/fpl/persistence/fpldb/config/Fpldb.hbm.xml"></mapping>
+	</session-factory>
+</hibernate-configuration>

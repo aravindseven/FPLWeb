@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fpl-util">
+
+	<path id="classpath.compile">
+		<pathelement location="${fpl.lib}/spring-beans-3.0.5.RELEASE.jar" />
+		<pathelement location="${fpl.lib}/hibernate3.jar" />
+		<pathelement location="${fpl.lib}/mail-1.4.jar" />
+		<pathelement location="${fpl.lib}/commons-lang-2.6.jar" />
+		<pathelement location="${fpl.lib}/spring-context-3.0.5.RELEASE.jar" />
+		<pathelement location="${fpl.lib}/spring-beans-3.0.5.RELEASE.jar" />
+		<pathelement location="${fpl.lib}/spring-core-3.0.5.RELEASE.jar" />
+		
+	</path>
+	
+ 	<property name="classpath.compile" refid="classpath.compile" />
+ 	
+	<import file="${build.commons}/build-lib.xml" />
+	
+</project>

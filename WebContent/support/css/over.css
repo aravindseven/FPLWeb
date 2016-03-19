@@ -1,0 +1,9 @@
+.overlap_label
+{
+	position: absolute;
+    background: #fff;
+    padding: 0px 5px;
+    margin-left: 20px;
+    color: #ccc;
+	z-index: 99999;
+}

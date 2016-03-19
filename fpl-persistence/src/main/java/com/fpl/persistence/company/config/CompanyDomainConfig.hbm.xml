@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.company.CompanyDomainConfig"  table="FPL_TR_COM_DOMAIN_CONFIG" lazy="false">
+	    <id name="id" type="java.lang.Long" column="CD_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_COMDOMAIN_CONFIG_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="companyId"		column="CD_CO_ID"				type="java.lang.Long" />
+	    <property name="domainId"		column="CD_DO_ID"				type="java.lang.Long" />
+	    <many-to-one name="domain" class="com.fpl.domain.Domain" lazy="false" insert="false" update="false">
+	    	<column name="CD_DO_ID" precision="9" scale="0" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+{
+ "PO_ID"	:"1",    
+  "PO_RE_ID":"42",      
+  "PO_CU_ID":"3",
+  "PO_FP_ID":"4",
+  "PO_CO_ID":"5",
+  "PO_DO_ID":"6",
+  "PO_STATUS":"2",
+  "PO_NUMBER":"PL123",
+  "PO_DATE":"07/09/2014",
+  "PO_DURATION":"2",
+  "PO_FREQUENCY":"2",
+  "PO_AMOUNT":"500",
+  "PO_RENEWAL_DATE":"07/09/2014",
+  "PO_ADVANCE_ALERT":"1",
+  "PO_ALERT_TYPE":"Email",
+  "PO_CONTACT_NAME":"Dinesh",
+  "PO_CONTACT_NUMBER":"9987654321",
+  "PO_RELATION":"Agent",
+  "PO_ID_PROOF":"ASD23456781",
+  "PO_NOTE":"ASAS",
+  "PO_CREATED_DATE":"08/09/2014"
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.AdvertisementType" table="FPL_TR_ADVERTISEMENT_TYPES" lazy="false">
+	    <id name="id" type="java.lang.Long" column="AT_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_TR_ADVERTISEMENT_TYPES_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="type"  						column="AT_TYPE"					type="java.lang.String"/>    
+	    <property name="countryid"  				column="AT_CO_ID"					type="java.lang.Long"/>    
+	    <property name="media"  					column="AT_MEDIA"					type="java.lang.String"/>    
+	    <property name="subscriptionRate"  			column="AT_SUBSCRIPTION_RATE"		type="java.lang.String"/>    
+	    <property name="startDate"  				column="AT_START_DATE"				type="java.util.Date"/> 
+	    <property name="endDate"  					column="AT_END_DATE"				type="java.util.Date"/> 
+	    <property name="fileType"  					column="AT_FILE_TYPE"				type="java.lang.String"/> 
+	    <property name="fileSize"  					column="AT_FILE_SIZE"				type="java.lang.String"/> 
+	    <property name="dimension"  				column="AT_DIMENSION"				type="java.lang.String"/> 
+	    <property name="subscrptionDeadLine"  		column="AT_SUB_DEAD_LINE"			type="java.lang.String"/> 
+	    <property name="itemSubmit"  				column="AT_ITEM_SUBMIT"				type="java.lang.String"/> 
+	    <property name="registrationDate"  			column="AT_REGISTRATION_DATE"		type="java.util.Date"/> 
+	    <property name="acticityFlag"  				column="AT_ACTICITY_FLAG"			type="java.lang.String"/> 
+	    <property name="discountPolicy"  			column="AT_DISCOUNT_POLICY"			type="java.lang.String"/> 
+	    <property name="note"  						column="AT_NOTE"					type="java.lang.String"/> 
+	    <property name="insertedDate"  				column="AT_INSERTED_DATE"			type="java.util.Date"/> 
+	    <property name="updateDate"  				column="AT_UPDATED_DATE"			type="java.util.Date"/> 
+	    <many-to-one name="country" class="com.fpl.country.Country" lazy="false" insert="false" update="false">
+	    	<column name="AT_CO_ID" precision="9" scale="0" />
+	    </many-to-one>  
+	</class>
+</hibernate-mapping>
+

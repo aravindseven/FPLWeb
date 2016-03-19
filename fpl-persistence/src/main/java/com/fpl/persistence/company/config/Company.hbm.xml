@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.company.Company"  table="FPL_MA_COMPANY" lazy="false">
+	    <id name="id" type="java.lang.Long" column="CO_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_COMPANY_ID</param> -->
+	    	</generator>
+	    	
+	    </id>
+	    <property name="name"					column="CO_NAME"					type="java.lang.String" />
+	    <property name="registration"			column="CO_REGISTRATION_ID"			type="java.lang.String" />
+	    <property name="incLocation"			column="CO_LOCATION"			    type="java.lang.String" />
+	    <property name="fax"					column="CO_FAX"						type="java.lang.String" />
+	    <property name="website"				column="CO_WEBSITE"					type="java.lang.String" />
+	    <property name="phonenumber1"			column="CO_PH_NUMBER_1"				type="java.lang.Long" />
+	    <property name="phonenumber2"			column="CO_PH_NUMBER_2"				type="java.lang.Long" />
+	    <property name="email"					column="CO_EMAIL"					type="java.lang.String" />
+	    <property name="contactPerson1"			column="CO_CONTACT_PERSON_1"		type="java.lang.String" />
+	    <property name="contactPerson2" 		column="CO_CONTACT_PERSON_2"		type="java.lang.String" />
+	    <property name="persoanNumber1"			column="CO_NUMBER_PERSON_1"			type="java.lang.Long" />
+	    <property name="persoanNumber2"			column="CO_NUMBER_PERSON_2"			type="java.lang.Long" />
+	    <property name="notes"				    column="CO_NOTES"				    type="java.lang.String" />
+	    <property name="registrationDate"		column="CO_REGISTRATION_DATE"		type="java.util.Date" /> 
+	  	<property name="updationDate"			column="CO_UPDATION_DATE"			type="java.util.Date" /> 
+	  	<property name="status"					column="CO_STATUS"					type="java.lang.String" />
+	    <many-to-one name="address" class="com.fpl.profile.address.Address" cascade="all" lazy="false">
+	    	<column name="CO_AD_ID" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>

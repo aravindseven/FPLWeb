@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.financialplanner.FinancialPlanner"  table="FPL_MA_FINANCIAL_PLANNER" lazy="false">
+	    <id name="id" type="java.lang.Long" column="FP_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_FINANCIAL_PLANNER_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="userTypeId"				column="FP_UT_ID"					type="java.lang.Long" />
+	    <property name="loginCredentialId"		column="FP_LC_ID"					type="java.lang.Long" />
+	    <property name="registration"			column="FP_REGISTRATION"			type="java.lang.String" />
+	    <property name="regEntity"				column="FP_REG_ENTITY"				type="java.util.Date" />
+	    <property name="expiryDate"				column="FP_EXPIRY_DATE"				type="java.util.Date" />
+	    <property name="coverage"				column="FP_COVERAGE"				type="java.lang.String" />
+	    <property name="specialization1"		column="FP_SPECIALIZATION_1"		type="java.lang.String" />
+	    <property name="specialization2"		column="FP_SPECIALIZATION_2"		type="java.lang.String" />
+	    <property name="agencyName"				column="FP_AGENCY_NAME"				type="java.lang.String" />
+	    <property name="insuranceCompany"		column="FP_INS_NAME"				type="java.lang.String" />
+	    <property name="website"				column="FP_WEBSITE"					type="java.lang.String" />
+	    <property name="date"					column="FP_DATE"					type="java.util.Date" />
+	    <property name="updationDate"			column="FP_UPDATION_DATE"			type="java.util.Date" />
+	    <property name="status"					column="FP_STATUS"					type="java.lang.String" />
+	    <property name="state"					column="FP_STATE"					type="java.lang.String" />
+	    <many-to-one name="personalData" class="com.fpl.profile.personal.PersonalData" cascade="all" lazy="false">
+	    	<column name="FP_PD_ID" />
+	    </many-to-one>
+	    
+	     <many-to-one name="secondaryPersonData" class="com.fpl.profile.personal.PersonalData" cascade="all" lazy="false">
+	    	<column name="FP_SECONDARY_PD_ID" />
+	    </many-to-one>
+	     <set name="fplDomainCfgs" cascade="all-delete-orphan" lazy="false">
+         	<key column="FD_FP_ID" />
+        	 <one-to-many class="com.fpl.financialplanner.FplDomainConfig"/>
+      	</set>
+	</class>
+</hibernate-mapping>

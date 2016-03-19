@@ -1,0 +1,59 @@
+{
+    "CustomerPV": {
+        "primaryPersonalData": {
+            "firstName": "Murali",
+            "lastName": "P",
+            "gender": "Male",
+            "dob": "1984-06-04",
+            "idProof": "PAN",
+            "mobile": 9789019878,
+            "landLine": 1234567890,
+            "email": "murali.p@yaazhsoft.com",
+            "proofNum": "AQBPP7878C"
+        },
+        "secondaryPersonalData": {
+            "firstName": "Muniraj",
+            "lastName": "P",
+            "dob": "",
+            "idProof": "PAN",
+            "mobile": 1234567890,
+            "proofNum": "AQBPP7878C",
+            "relation": "Brother"
+        },
+        "primaryAddressPV": {
+            "id": 39,
+            "block": "9/9, 3rd Main Road",
+            "buildingName":"Praveen Raj Flats",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": 600042,
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "secondaryAddressPV": {
+            "id": 40,
+            "block": "9/9, 3rd Main Road",
+            "buildingName":"Praveen Raj Flats",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": 600042,
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "validationDate": "",
+        "status": "VERIFIED",
+        "state": "ACTIVE"
+    },
+    "UserLoginInfo": {
+        "loginCredentialid": 16,
+        "userTypeId": 1,
+        "email": "murali.p@yaazhsoft.com",
+        "alternateMailId": "murali4fnz@gmail.com",
+        "mobileNumber": "9789019878",
+        "password": "Qwer@1234",
+        "userType": "CUST_INDIVIDUAL",
+        "country": "india",
+        "secreatAnswer": "1234",
+        "secEmailVerified": false
+    }
+}

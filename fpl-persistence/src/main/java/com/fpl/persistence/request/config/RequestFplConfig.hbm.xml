@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.fpl.request.RequestFplConfig" table="FPL_TR_REQUEST_FPL_CONFIG" lazy="false">
+	    <id name="id" type="java.lang.Long" column="RF_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_REQUEST_FPL_CONFIG_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="requestId"			column="RF_RE_ID"					type="java.lang.Long"/>
+	    <property name="statusId"			column="RF_STATUS"					type="java.lang.Long"/>
+	    <property name="date"				column="RF_DATE"					type="java.sql.Timestamp"/>
+	    <property name="finPlannerId"		column="RF_FP_ID"					type="java.lang.Long"/>
+	    <many-to-one name="status" class="com.fpl.status.Status" cascade="none" lazy="false" insert="false" update="false">
+	    	<column name="RF_STATUS" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+{
+    "type" : "FPL",
+    "success": "OK",
+    "id" : 18,
+    "FinancialPlannerPV": {
+        "personalDataPV": {
+            "firstName": "Dinesh",
+            "lastName": "B",
+            "gender": "Male",
+            "dob": "2014-08-28",
+            "idProof": "PAN",
+            "mobile": "1234567890",
+            "landLine": "1234567890",
+            "email": "dinesh.b@fuzzy15s.com",
+            "proofNum": "AQBPP7878C"
+        },
+        "addressPV": {
+            "id": 40,
+            "block": "9/9, 3rd Main Road",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": "600042",
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "validationDate": "",
+        "status": "Pending",
+        "state": "deactive",
+        "registration": "Professional Reg",
+        "regEntity": "2014-08-27",
+        "expiryDate": "2014-08-29",
+        "coverage": "asas",
+        "specialization1": "asfFFA",
+        "specialization2": "SDsd",
+        "agencyName": "sdggsd",
+        "website": "saf",
+        "domainList": [
+            "Car Insurance"
+        ],
+        "domains": [
+            {
+                "id": 5,
+                "name": "Bike Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 4,
+                "name": "Car Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 3,
+                "name": "Life Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 2,
+                "name": "Bike Loan",
+                "type": "LOAN"
+            },
+            {
+                "id": 1,
+                "name": "Car Loan",
+                "type": "LOAN"
+            }
+        ]
+    }
+}

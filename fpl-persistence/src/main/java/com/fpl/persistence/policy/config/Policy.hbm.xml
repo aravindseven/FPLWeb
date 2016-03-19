@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.policy.Policy2"  table="FPL_TR_POLICY" lazy="false">
+	    <id name="id" type="java.lang.Long" column="PO_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_POLICY_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="requestId"			column="PO_RE_ID"				type="java.lang.Long" />
+	    <property name="customerId"			column="PO_CU_ID"				type="java.lang.Long" />
+	    <property name="fplId"				column="PO_FP_ID"				type="java.lang.Long" />
+	    <property name="domainId"			column="PO_DO_ID"				type="java.lang.Long" />
+	    <property name="companyId"			column="PO_CO_ID"				type="java.lang.Long" />
+	    <property name="statusId"			column="PO_STATUS"				type="java.lang.Long" />
+	    <property name="policyNumber"		column="PO_NUMBER"				type="java.lang.String" />
+	    <property name="policyDate"			column="PO_DATE"				type="java.lang.String" />
+	    <property name="duriation"			column="PO_DURATION"			type="java.lang.Integer" />
+	    <property name="frequency"			column="PO_FREQUENCY"			type="java.lang.Integer" />
+	    <property name="amount"				column="PO_AMOUNT"				type="java.math.BigDecimal" />
+	    <property name="renewalDate"		column="PO_RENEWAL_DATE"		type="java.lang.String" />
+	    <property name="advanceAlert"		column="PO_ADVANCE_ALERT"		type="java.lang.Integer" />
+	    <property name="alertType"			column="PO_ALERT_TYPE"			type="java.lang.String" />
+	    <property name="contactName"		column="PO_CONTACT_NAME"		type="java.lang.String" />
+	    <property name="contactNumber"		column="PO_CONTACT_NUMBER"		type="java.lang.String" />
+	    <property name="relation"			column="PO_RELATION"			type="java.lang.String" />
+	    <property name="idProof"			column="PO_ID_PROOF"			type="java.lang.String" />
+	    <property name="note"				column="PO_NOTE"				type="java.lang.String" />
+	    <property name="createdDate"		column="PO_CREATED_DATE"		type="java.util.Date" />
+	   
+	   
+	    <property name="requestnumber"  column="PO_REQ_NUM"  type="java.lang.String" />
+	    <property name= "policydesc"    column="PO_DESC"      type="java.lang.String" />
+	    <property name= "premiumamount"  column="PO_PREM_AMNT"  type="java.math.BigDecimal" />
+	    <property name= "nomineelastname" column="PO_NOMNE_LNAME" type="java.lang.String" />
+	    <property name= "nomineeID"       column="PO_NOMNE_ID"     type="java.lang.Long" />
+	    <property name= "nomineemobile"     column="PO_NOMNE_MOBILE" type="java.lang.String" />
+	    <property name= "confidentalitypre"   column="PO_CONFD_PRE" type="java.lang.String" />
+	    <many-to-one name="domain" class="com.fpl.domain.Domain" cascade="none" lazy="false" insert="false" update="false">
+	    	<column name="PO_DO_ID" />
+	    </many-to-one>
+	    <many-to-one name="status" class="com.fpl.status.Status" cascade="none" lazy="false" insert="false" update="false">
+	    	<column name="PO_STATUS" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>
+

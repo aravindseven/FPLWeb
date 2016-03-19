@@ -1,0 +1,195 @@
+form{
+	transition: none !important;
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+}
+
+
+.f-indicator{
+	width: 100%;
+	height: 56px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #ce2c2c;
+}
+.f-indicator p{
+	text-transform: uppercase;
+	color: white;
+	font-size: 16px;
+	font-family: SansBold;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+}
+.identify{
+	position: relative;
+	width: 80%;
+	height: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+.identify table{
+	position: relative;
+	width: 80%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	color: #70767b;
+	font-family: SansRegular;
+	font-size: 14px;
+}
+.identify table td{
+	padding: 10px 50px 10px 50px;
+}
+.identify table tr{
+
+}
+.i-input{
+	padding-left: 20px;
+	border: 1px solid #e1e1e1;
+	font-family: SansRegular;
+	font-size: 14px;
+	height: 40px;
+	width: 260px;
+}
+.i-id{
+    background-position: 98%;
+}
+.fname,
+.lname,
+.mail,
+.coun,
+.pcode,
+.mobnum,
+.llnum,
+.regno,
+.regent,
+.inscom,
+.cvrg,
+.blkn,
+.agname,.incloc,.regnum,.proonum{
+	background: url(images/inputtop.png) no-repeat #FFF;
+	background-position: right top;
+	background-size: 20px;
+}
+.date{
+	padding-left: 20px;
+	border: 1px solid #e1e1e1;
+	font-family: SansRegular;
+	font-size: 14px;
+	height: 40px;
+	width: calc(260px/3);
+	margin-left: -3px;
+	background-position: 70px;
+}
+select{
+	background: url(icons/selectarrow.jpg) no-repeat #FFF;
+	background-position: 240px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.qmark{
+	position: absolute;
+	z-index: 10000;
+	top: 65%;
+	left: -5%;
+	height: 16px;
+	cursor: pointer;
+	visibility: hidden;
+}
+label{
+	font-size: 16px;
+}
+.i-radio{
+	margin-left: 43px;
+}
+.i-upload{
+	background: #2c478c;
+	color: white;
+	font-family: SansRegular;
+	font-size: 14px;
+	height: 40px;
+	position: absolute;
+	width: 100px;
+	right: 50px;
+	border: 0;
+	cursor: pointer;
+    top: 260px;
+}
+.i-upload:hover,
+.bt-end:hover{
+	background: #000066;
+}
+.bt-end{
+	cursor: pointer;
+	position: relative;
+	float: left;
+	border: 0;
+	width: 219px;
+	height: 45px;
+	font-family: SansRegular;
+	font-size: 16px;
+	color: white;
+	left: 15px;
+	top: 185px;
+	background: #2c478c; 
+	margin-left: 30px;
+}
+.bt-cont{
+	background: #da3134;
+}
+.bt-cont:hover{
+	background: #900;
+}
+
+.agree{
+	position: absolute;
+	left: 56%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	top: 500px;
+	width: 80%;
+	font-family: SansRegular;
+	font-size: 20px;
+}
+.agree input{
+	position: relative;
+	top: 4px;
+	float: left;
+	width: 15px;
+	height: 15px;
+	margin-right: 20px;
+}
+.substatus{
+	top: 660px;
+    position: absolute;
+	height: 200px;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+.bt-sub{
+	top: 50px;
+	left: 56%;
+}
+#adinfo{
+	position: relative;
+	top: 80px;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	font-family: SansLight;
+}
+#tab1{background:#F3F3F3; top:200px; border:1px solid #E0E0E0;}
+#tab2{background:#F3F3F3; top:240px; border:1px solid #E0E0E0;margin-top:20px;}
+#tab3{background:#F3F3F3; top:310px; border:1px solid #E0E0E0; }
+    .formsection{height: 900px;}
+    .footer{top: 1200px;}
+    .container{height: 1240px;}

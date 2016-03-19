@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.profile.customer.Customer" table="FPL_MA_CUSTOMER" lazy="false">
+	    <id name="id" type="java.lang.Long" column="CU_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_CUSTOMER_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="relationship"  				column="CU_RELATIONSHIP"			type="java.lang.String"/>    
+	    <property name="service"  					column="CU_SERVICE"					type="java.lang.String"/>    
+	    <property name="startDate"  				column="CU_DATE"					type="java.util.Date"/>    
+	    <property name="updationDate"  				column="CU_UPDATION_DATE"			type="java.util.Date"/>    
+	    <property name="status"  					column="CU_STATUS"					type="java.lang.String"/>    
+	    <property name="state"  					column="CU_STATE"					type="java.lang.String"/>    
+	    <property name="confPreference"  			column="CU_CONF_PREFERENCE"			type="java.lang.String"/>
+	    <property name="userTypeId"  				column="CU_UT_ID"					type="java.lang.Long"/>
+	    <property name="loginCredentialId"  		column="CU_LC_ID"					type="java.lang.Long"/>
+	    
+	    <many-to-one name="personalData" class="com.fpl.profile.personal.PersonalData" cascade="all" lazy="false">
+	    	<column name="CU_PD_ID" not-null="true" />
+	    </many-to-one>
+	    <many-to-one name="secondaryPersonData" class="com.fpl.profile.personal.PersonalData" cascade="all" lazy="false">
+	    	<column name="CU_SECONDARY_PD_ID" />
+	    </many-to-one>
+	    
+	</class>
+</hibernate-mapping>
+

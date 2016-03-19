@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media screen and ( max-width : 1100px ){
+	header nav{
+		width: 580px;
+		left: 16%;
+	}
+	header nav ul{
+		width: 580px;
+	}
+	header nav ul li{
+		width: calc(520px/6);
+	}
+	.snc-con{
+		right: 23%;
+	}
+}
+@media screen and ( max-width : 1050px ){
+	.formsection{
+		width: 700px;
+		height: 700px;
+		background: white;
+	}
+}
+@media screen and ( max-width : 920px ){
+	.container{
+		height: 1115px;
+	}
+
+	nav{
+		display: none;
+	}
+	.snc-con{
+		right: 30%;
+	}
+	.mobmenuicon{
+		visibility: visible;
+	}
+	.footer{
+		top: 1015px;
+		width: 100%;
+		height: 100px;
+		background: #494e5a;
+	}
+	.footer p{
+		left: 5%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	}
+	.footer ul{
+		width: 60%;
+		left: 40%;
+	}
+	.footer ul li{
+		list-style: none;
+		float: left;
+	}
+
+}
+@media screen and ( max-width : 750px ){
+	.container{
+		height: 1405px;
+	}
+	.snc-con{
+		right: 40%;
+	}
+	.mobmenuicon{
+		left: 40%;
+	}
+	.footer{
+		top: 1305px;
+		width: 100%;
+		height: 100px;
+	}
+	.footer p{
+		left: 5%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	}
+	.footer ul{
+		width: 60%;
+		left: 40%;
+	}
+	.footer ul li{
+		list-style: none;
+		float: left;
+	}
+	.formsection{
+		width: 500px;
+		height: 1000px;
+	}
+		
+}
+@media screen and ( max-width : 550px ){
+	.container{
+		height: 1385px;
+	}
+	.snc-con{
+		right: 4%;
+		top: 70px;
+	}
+	.snc-ser{top:70px;width:130%}
+	.mobmenuicon{top:105px;left:75%;}
+	header{
+		height: 200px;
+	}
+
+	.dp{
+		top: 200px;
+	}
+	.dp img{
+		left: 20%;
+	}
+	
+	.formsection{
+		top: 330px;
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		width: 1000px;
+		height: 650px;
+		background: white;
+	}
+
+
+	.footer{
+		top: 1265px !important;
+		height: 120px;
+	}
+	.footer ul{
+		width: 50%;
+		left: 40%;
+	}
+	.footer ul li{
+		list-style: none;
+		float: left;
+	}
+	.formsection{
+		width: 300px;
+		height: 900px;
+		overflow-x: hidden;
+	}
+}
+@media screen and ( max-width : 500px ){
+	.container{
+		height: 1445px;
+	}
+	.footer{
+		top: 1565px;
+		width: 100%;
+		height: 180px;
+	}
+	.footer p{
+		top: 20%;
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+	}
+	.footer ul{
+		width: 75%;
+		top: 60%;
+		transform: translate(-50%,-50%);
+		-webkit-transform: translateY(-50%,-50%);
+		left: 50%;
+	}
+}
+

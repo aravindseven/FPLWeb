@@ -1,0 +1,36 @@
+<!-- <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+       name="com.fpl.login.entity.LoginRecord" table="FPL_MA_LOGIN_RECORDS" lazy="false">
+           <id name="id" type="java.lang.Long" column="LR_ID">   
+              <generator class="native">
+              		<param name="sequence">FPL_SQ_LOGIN_CREDENTIAL_ID</param>
+              </generator>
+           </id>
+           <property name="sessionId"   		        column="LR_SESSION_ID"  					type="java.lang.String"/>
+          
+           <property name="userId"   			        column="LR_USER_ID"  					    type="java.lang.String"/>
+           <property name="devicetype"   				column="LR_DEVICE_TYPE"  				    type="java.lang.String"/>
+           <property name="deviceid"   					column="LR_DEVICE_ID"  					    type="java.lang.String"/>
+           <property name="loginresult"   				column="LR_LOGIN_RESULT"  				    type="java.lang.String"/>
+           <property name="resultreason"   		        column="LR_RESULT_REASON"           	    type="java.lang.String"/>
+           <property name="logincrediantialid"   		column="LR_LC_ID"  			                type="java.lang.Long"/>
+           <property name="chatstatus"   			    column="LR_USER_CHAT_STATUS"  		        type="java.lang.String"/>
+           <property name="ipaddress"   				column="LR_IP_ADDRESS"  				    type="java.lang.String"/>
+           <property name="logindate"   				column="LR_LOGIN_DATETIME"  				type="java.lang.String"/>
+           <property name="logoutdate"   				column="LR_LOGUT_DATETIME"  				type="java.lang.String"/>
+           <many-to-one name="user" class="com.fpl.login.entity.User" lazy="false" insert="false" update="false">
+              <column name="LR_USER_ID" precision="9" scale="0" />
+           </many-to-one>
+           <many-to-one name="secretQuestion" class="com.fpl.login.entity.SecretQuestion" lazy="false" insert="false" update="false">
+              <column name="LC_SQ_ID" precision="9" scale="0" />
+           </many-to-one>
+           <one-to-one name="loginSupport"  class="com.fpl.login.entity.LoginSupport" lazy="false" cascade="none">
+           </one-to-one>
+           <one-to-one name="loginRecovery"  class="com.fpl.login.entity.LoginRecovery" lazy="false"  cascade="none">
+           </one-to-one>
+        </class>
+</hibernate-mapping> -->

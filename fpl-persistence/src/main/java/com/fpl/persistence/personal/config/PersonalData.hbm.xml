@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.profile.personal.PersonalData" table="FPL_MA_PERSONAL_DATA" lazy="false">
+	    <id name="id" type="java.lang.Long" column="PD_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_PERSONAL_DATA_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="name"  					column="PD_NAME"			type="java.lang.String"/>    
+	    <property name="lastNameOrRNumber"  	column="PD_LNAME_RNUMBER"	type="java.lang.String"/>    
+	    <property name="genderOrLoc"  			column="PD_GENDER_OR_LOCA"	type="java.lang.String"/>    
+	    <property name="dateOfBirth"  			column="PD_DATE_OF_BIRTH"	type="java.util.Date"/>    
+	    <property name="proofDesc"  			column="PD_ID_PROOF_DESC"	type="java.lang.String"/>    
+	    <property name="proofNum"  				column="PD_ID_PROOF_NUM"	type="java.lang.String"/>    
+	    <property name="mobileNumber"  			column="PD_MOBILE_PHONE"	type="java.lang.String"/>    
+	    <property name="landlineNum"  			column="PD_LAND_PHONE"		type="java.lang.String"/>    
+	    <property name="email"  				column="PD_EMAIL"			type="java.lang.String"/>
+	    <many-to-one name="address" class="com.fpl.profile.address.Address" cascade="all" lazy="false" insert="true" update="true">
+	    	<column name="PD_CU_AD_ID" />
+	    </many-to-one>
+	    <many-to-one name="permanentAddress" class="com.fpl.profile.address.Address" cascade="all" lazy="false" insert="true" update="true">
+	    	<column name="PD_PE_AD_ID" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>
+

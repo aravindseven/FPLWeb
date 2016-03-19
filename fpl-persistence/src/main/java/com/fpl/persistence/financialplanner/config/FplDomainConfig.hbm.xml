@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.financialplanner.FplDomainConfig"  table="FPL_TR_CONFIG_FINPLAN_DOM" lazy="false">
+	    <id name="id" type="java.lang.Long" column="FD_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_CONF_FINPLAN_DOM_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="financialPlannerId"	column="FD_FP_ID"	type="java.lang.Long" />
+	    <property name="domainId"			column="FD_DO_ID"	type="java.lang.Long" />
+	    <many-to-one name="domainInfo" class="com.fpl.domain.Domain" lazy="false" insert="false" update="false">
+	    	<column name="FD_DO_ID" precision="9" scale="0" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>
+

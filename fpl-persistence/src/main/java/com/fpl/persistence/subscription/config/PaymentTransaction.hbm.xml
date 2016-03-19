@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.PaymentTransaction" table="FPL_TR_PAYMENT_TRANSACTION" lazy="false">
+	    <id name="id" type="java.lang.Long" column="PT_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_TR_PAYMENT_TRANSACTION_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="mode"  				column="PT_MODE"			type="java.lang.String"/>    
+	    <property name="transactionRef"		column="PT_TERMS"			type="java.lang.String"/>
+	    <property name="transactionToken"		column="PT_TOKEN"			type="java.lang.String"/>
+	    <property name="transactionPayerId"		column="PT_PAYID"			type="java.lang.String"/>    
+	    <property name="transactionDate"  	column="PT_DATE"			type="java.util.Date"/>    
+	    <property name="currency"  			column="PT_CURRENCY"		type="java.lang.String"/>    
+	    <property name="status"  			column="PT_STATUS"			type="java.lang.String"/> 
+	    <property name="note"  				column="PT_NOTE"			type="java.lang.String"/>   
+	</class>
+</hibernate-mapping>
+

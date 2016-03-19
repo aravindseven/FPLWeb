@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fpl-interfaces">
+
+	<path id="classpath.compile">
+		<pathelement location="${project.home}/fpl-util/build" />
+		<pathelement location="${fpl.lib}/javaee.jar" />
+		<pathelement location="${fpl.lib}/commons-lang-2.6.jar" />
+	</path>
+	
+ 	<property name="classpath.compile" refid="classpath.compile" />
+ 	
+	<import file="${build.commons}/build-lib.xml" />
+	
+</project>

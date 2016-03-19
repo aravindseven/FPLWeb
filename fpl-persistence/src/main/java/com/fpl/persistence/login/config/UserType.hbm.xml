@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.fpl.login.entity.User" table="FPL_MA_USER_TYPE" lazy="false">
+           <id name="id" type="java.lang.Long" column="UT_ID">   
+              <generator class="native">
+<!--               		<param name="sequence">FPL_SQ_USER_TYPE_ID</param> -->
+              </generator>
+           </id>
+           <property name="userType"   column="UT_DESCRPTION"  type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+        name="com.fpl.login.entity.LoginSupport" table="FPL_MA_LOGIN_SUPPORT" lazy="false">
+           <id name="id" type="java.lang.Long" column="LS_ID">   
+              <generator class="native">
+<!--               		<param name="sequence">FPL_SQ_LOGIN_SUPPORT_ID</param> -->
+              </generator>
+           </id>
+           <property name="loginCredentialId"   column="LS_LC_ID"  				type="java.lang.Long"/>
+           <property name="attempt"   			column="LS_ATTEMPT"  			type="java.lang.Integer"/>
+           <property name="locked"   			column="LS_LOCKED"  			type="java.lang.Integer"/>
+           <property name="active"   			column="LS_ACTIVE"  			type="java.lang.Integer"/>
+           <property name="passwordOne"   		column="LS_PRE_PASSWORD1"  		type="java.lang.String"/>
+           <property name="passwordTwo"   		column="LS_PRE_PASSWORD2"  		type="java.lang.String"/>
+           <property name="passwordThree"   	column="LS_PRE_PASSWORD3"  		type="java.lang.String"/>
+           <property name="secEmailVerified"   	column="LS_SEC_EMAIL_VERIFIED"  type="java.lang.Integer"/>
+           <property name="online"   			column="LS_ONLINE"  			type="java.lang.Integer"/>
+           <property name="imageUrl"            column="LS_IMAGE_URL"           type="java.lang.String"/> 
+           <property name="expireDate"  		column="LS_EXP_DATE"			type="java.util.Date"/>
+           <property name="browser_Active"      column="LS_BROWSER_ACTIVE"		type="java.lang.String"/>
+           <property name="mobile_Active"  		column="LS_MOBILE_ACTIVE"		type="java.lang.String"/>
+           <property name="non_consecutive_on"  column="LS_NONCONSECUTIVE_ON"	type="java.lang.String"/>
+           <property name="status"              column="LS_STATUS"	            type="java.lang.String"/>
+           <property name="Sessionid"           column="LS_SESSION_ID"	        type="java.lang.String"/>
+     
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+ <nav class="navbar navbar-default" ng-app="Headerapp" ng-controller="HeaderController as hcont" ng-init="hcont.userdetails()">
+  <div class="container-fluid" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header"  >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="support/communication/images/logo2.png"/></a>
+    </div>
+			<!--  -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="navcenter">
+      <ul class="nav navbar-nav welco">
+		 <li class="hi"><a href="#"><img src="support/communication/images/fo1.png"/><br/><span class="prof">PROFILE</span></a></li>
+              <li class="hi"><a href="#"><img src="support/communication/images/foo2.png"/><br/><span class="prof">REQUEST</span></a></li>
+              <li class="hi"><a href="erecord.jsp?type=list"><img src="support/communication/images/fm3.png"/><br/><span class="prof">E RECORDS</span></a></li>
+			  <li class="hi" style=" background:#ebebeb;"><a href="Communication.jsp?type=inbox"><img src="support/communication/images/foo3.png" style="padding-left:28px;"/><br/><span class="prof">COMMUNICATION</span></a></li>
+	</ul>
+      </div>
+			<div class="nav navbar-nav navbar-right visible-lg visible-md hidden-sm hidden-xs">
+		<table>
+			<tr>
+				<td style="border-bottom:none;"><a href="#" onmouseover="tooltip.pop(this, '#sub3', {offsetY:-10, smartPosition:false})"><img src="support/communication/images/profile.png"></a></td>
+				<td style="border:none;">
+					<img src="support/communication/images/singa.png"><span class="firsta">Singapore</span><br/>
+					<span class="firstb"><b style="color:#757171; font-size:11pt;">{{ first_name }} {{ last_name }}</b></span><br/>
+					<div class="helo"><i class="fa fa-power-off" style="color:#ccc;font-size:20px;"><span class="firstc" ng-click="hcont.logout()">Logout</span></i></div>
+				</td>
+			</tr>
+		</table>
+	<div class="request">Request > Menu Name > Menu Name 1</div>
+    </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>

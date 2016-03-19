@@ -1,0 +1,39 @@
+{
+    "type" : "Customer",
+    "success": "OK",
+    "id" : 16,
+    "CustomerPV": {
+        "primaryPersonalData": {
+            "firstName": "Murali",
+            "lastName": "P",
+            "gender": "Male",
+            "dob": "1984-04-16",
+            "idProof": "PAN",
+            "mobile": "9789019878",
+            "landLine": "1234567890",
+            "email": "murali.p@yaazhsoft.com",
+            "proofNum": "AQBPP7878C"
+        },
+        "secondaryPersonalData": {
+            "firstName": "Muniraj",
+            "lastName": "P",
+            "dob": "",
+            "idProof": "PAN",
+            "mobile": "1234567890",
+            "proofNum": "AQBPP7878C",
+            "relation": "Brother"
+        },
+        "addressPV": {
+            "id": 39,
+            "block": "9/9, 3rd Main Road",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": "600042",
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "validationDate": "",
+        "status": "VERIFIED",
+        "state": "ACTIVE"
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "FinancialPlannerPV": {
+        "personalDataPV": {
+            "firstName": "Suresh",
+            "lastName": "Kumar",
+            "gender": "Male",
+            "dob": "2014-08-21",
+            "idProof": "PAN",
+            "mobile": 1234567890,
+            "landLine": 1234567890,
+            "email": "sureshkumar.n@fuzzy15s.com",
+            "proofNum": "AQBPP7878C"
+        },
+        "addressPV": {
+            "id": 41,
+            "block": "9/9, 3rd Main Road",
+            "buildingName":"Haritha Hills",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": "600042",
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "secondaryAddressPV": {
+            "id": 41,
+            "block": "9/9, 3rd Main Road",
+            "buildingName":"Haritha Hills",
+            "street": "2nd Cross Street",
+            "city": "Chennai",
+            "postalCode": "600042",
+            "state": "TamilNadu",
+            "country": "india"
+        },
+        "validationDate": "",
+        "status": "Pending",
+        "state": "deactive",
+        "registration": "ewqqw",
+        "regEntity": "2014-08-21",
+        "expiryDate": "2014-08-08",
+        "coverage": "asas",
+        "specialization1": "SDsd",
+        "specialization2": "asfdf",
+        "agencyName": "fas",
+        "website": "asaff",
+        "domainList": [
+            "Car Insurance"
+        ],
+        "domains": [
+            {
+                "id": 5,
+                "name": "Bike Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 4,
+                "name": "Car Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 3,
+                "name": "Life Insurance",
+                "type": "INSURANCE"
+            },
+            {
+                "id": 2,
+                "name": "Bike Loan",
+                "type": "LOAN"
+            },
+            {
+                "id": 1,
+                "name": "Car Loan",
+                "type": "LOAN"
+            }
+        ]
+    },
+    "UserLoginInfo": {
+        "loginCredentialid": 18,
+        "userTypeId": 3,
+        "email": "sureshkumar.n@fuzzy15s.com",
+        "alternateMailId": "murali.p@yaazhsoft.com",
+        "mobileNumber": "1234567890",
+        "password": "Qwer@1234",
+        "userType": "FP_CORPORATE",
+        "country": "india",
+        "secreatAnswer": "1234",
+        "secEmailVerified": false
+    }
+}

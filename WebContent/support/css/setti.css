@@ -1,0 +1,23 @@
+.navbar-default
+{
+
+width: 100% !important;
+    height: 100%  !important;
+    display: inline-block  !important;
+    left: 0  !important;
+    top: 0  !important;
+
+}
+.visible-lg {
+    display: inline-block !important;
+}
+.navbar-right {
+    float: right !important;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+td
+{
+    border-bottom: none;
+    display: inline-block;
+}

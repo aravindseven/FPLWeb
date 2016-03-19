@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.FplSubscription" table="FPL_TR_FP_SUBSCRIPTION" lazy="false">
+	    <id name="id" type="java.lang.Long" column="FS_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_SUBSCRIPTION_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="fplId"  					column="FS_FP_ID"					type="java.lang.Long"/>    
+	    <property name="startDate"  				column="FS_START_DATE"				type="java.util.Date"/>    
+	    <property name="endDate"  					column="FS_END_DATE"				type="java.util.Date"/>    
+	    <property name="subscriptionMasterId"  		column="FS_SM_ID"					type="java.lang.Long"/>  
+	    <property name="duriation"  				column="FS_DURATION"				type="java.lang.Integer"/>    
+	    <property name="countryId"  				column="FS_CO_ID"					type="java.lang.Long"/> 
+	    <property name="customerName"  				column="FS_CUSTOMER_NAME"			type="java.lang.String"/>
+	    <property name="activityFlag"  				column="FS_ACTICITY_FLAG"			type="java.lang.String"/> 
+	    <property name="note"  						column="FS_NOTE"					type="java.lang.String"/> 
+	    <property name="subscriptionAmount"  		column="FS_AMT"						type="java.lang.Float"/>
+	    <property name="subscriptionTaxAmount"  	column="FS_TAX"						type="java.lang.Float"/>
+	    <property name="subscriptionTotalAmount"  	column="FS_TOT_AMT"					type="java.lang.Float"/> 
+
+	    <many-to-one name="subscriptionMaster" class="com.fpl.subscription.SubscriptionMaster" lazy="false" insert="false" update="false">
+	    	<column name="FS_SM_ID" precision="9" scale="0" />
+	    </many-to-one>
+	    
+	     <many-to-one name="paymentTransaction" class="com.fpl.subscription.PaymentTransaction" lazy="false" cascade="all">
+	    	<column name="FS_PT_ID" precision="9" scale="0" />
+	    </many-to-one>
+
+	</class>
+	
+<!-- 	<query name="findSubscriptionByFPLId"> -->
+<!--         <![CDATA[from FplSubscription fplSub where fplSub.fplId = :fplId]]> -->
+<!--     </query> -->
+</hibernate-mapping>
+

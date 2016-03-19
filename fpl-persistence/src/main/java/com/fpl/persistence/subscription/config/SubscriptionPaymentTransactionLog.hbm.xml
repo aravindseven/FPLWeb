@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.subscription.audit.SubscriptionPaymentTransactionLog" table="FPL_PAYMENT_TRANSACTION_AUDIT_LOG" lazy="false">
+	    <id name="id" type="java.lang.Long" column="PA_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_TR_PAYMENT_TRANSACTION_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="mode"  				column="PA_MODE"		type="java.lang.String"/> 
+	    <property name="fplId"  			column="PA_FPL_ID"		type="java.lang.Long"/> 
+	    <property name="subId"  			column="PA_SUB_ID"		type="java.lang.Long"/> 
+	    <property name="subMasterId"  	    column="PA_SUBMASTER_ID" type="java.lang.Long"/>    
+	    <property name="transactionRef"		column="PT_REF"			type="java.lang.String"/>
+	    <property name="transactionToken"	column="PA_TOKEN"		type="java.lang.String"/>
+	    <property name="transactionPayerId"	column="PA_PAYID"		type="java.lang.String"/>    
+	    <property name="transactionDate"  	column="PA_TRANS_TIME"	type="java.util.Date"/>    
+	    <property name="currency"  			column="PA_CURRENCY"	type="java.lang.String"/>    
+	    <property name="status"  			column="PA_STATUS"		type="java.lang.String"/> 
+	    <property name="note"  				column="PA_NOTE"		type="java.lang.String"/>   
+	</class>
+</hibernate-mapping>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class
+        name="com.fpl.request.Request" table="FPL_TR_REQUEST" lazy="false">
+	    <id name="id" type="java.lang.Long" column="RE_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_REQUEST_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="domainId"			column="RE_DM_ID"					type="java.lang.Long"/>
+	    <property name="location"			column="RE_LOCATION"				type="java.lang.String"/>
+	    <property name="description"		column="RE_DESC"					type="java.lang.String"/>
+	    <property name="keyword"		    column="RE_KEYWORD"					type="java.lang.String"/>
+	    <property name="postalCode"		    column="RE_POSTAL"					type="java.lang.String"/>
+	    <property name="customerId"			column="RE_CU_ID"					type="java.lang.Long"/>
+	    <property name="finPlannerId"		column="RE_CLOSED_FP_ID"			type="java.lang.Long"/>
+	    <property name="createdDate"		column="RE_CREATED_DATE"			type="java.util.Date"/>
+	    <property name="updatedDate"		column="RE_UPDATED_DATE"			type="java.util.Date"/>
+	    <property name="currentStatusId"	column="RE_CURRENT_STATUS"			type="java.lang.Long"/>
+	    <property name="notification"		column="RE_FOLLOWUP_NOTIFY"			type="java.lang.Long"/>
+	    <set name="requestReferenceList" lazy="false" cascade="all">
+	    	<key column="RS_RE_ID" />
+	    	<one-to-many class="com.fpl.request.RequestStatusReference" />
+	    </set>
+	    <set name="requestFplConfigList" lazy="false" cascade="all">
+	    	<key column="RF_RE_ID" />
+	    	<one-to-many class="com.fpl.request.RequestFplConfig" />
+	    </set>
+	    <many-to-one name="status" class="com.fpl.status.Status" lazy="false" insert="false" update="false">
+	    	<column name="RE_CURRENT_STATUS" />
+	    </many-to-one>
+	    <many-to-one name="domain" class="com.fpl.domain.Domain" lazy="false" insert="false" update="false">
+	    	<column name="RE_DM_ID" />
+	    </many-to-one>
+	</class>
+</hibernate-mapping>

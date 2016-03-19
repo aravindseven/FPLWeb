@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpl.domain.Domain" table="FPL_MA_DOMAIN" lazy="false">
+	    <id name="id" type="java.lang.Long" column="DO_ID">    
+	    	<generator class="native">
+<!-- 	       		<param name="sequence">FPL_SQ_DOMAIN_ID</param> -->
+	    	</generator>
+	    </id>
+	    <property name="name"  		column="DO_NAME"		type="java.lang.String"/>    
+	    <property name="type"  		column="DO_TYPES"		type="java.lang.String"/>    
+	</class>
+</hibernate-mapping>

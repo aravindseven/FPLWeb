@@ -1,0 +1,29 @@
+{
+	"NewRequest": {
+	    "id":"29",
+		"type":"4",
+		"description":"What type of car?\nsad\nAre you looking for life time insurance?\nasdasd\n",
+		"postalCode":"600042",
+		"location":"Chennai",
+		"urgency":"1",
+		"followUp":"1",
+		"country":"India",
+		"sendToFpl":false
+	},
+	"Domains":[{
+			"id" : "1",
+			"name" : "Car Loan"
+		}, {
+			"id" : "2",
+			"name" : "Bike Loan"
+		}, {
+			"id" : "3",
+			"name" : "Life Insurance"
+		}, {
+			"id" : "4",
+			"name" : "Car Insurance"
+		}, {
+			"id" : "5",
+			"name" : "Bike Insurance"
+		}]
+}

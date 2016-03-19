@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:component-scan base-package="com.fpl"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="fpl.login.abstractHibernateConfig" class="com.fpl.persistence.support.AbstractHibernateConfig" abstract="true">
+		<property name="templateFactory" ref="hibernate.templateFactory" />
+	</bean>
+	
+	<bean id="fpl.login.loginValidator" class="com.fpl.core.login.support.LoginValidator" scope="prototype">
+		<property name="loginSupportDAO" ref="fpl.login.loginSupportDAO" />
+		<property name="loginAuditDAO" ref="fpl.login.loginAuditDAO" />
+		<property name="loginProcessorSupport" ref="fpl.login.loginProcessorSupport" />
+		<!--  <property name="loginRecordDAO" ref="fpl.login.loginRecordsDAO" />  -->
+	</bean>
+	<bean id="fpl.login.loginProcessor" class="com.fpl.core.login.LoginProcessorImpl" scope="prototype">
+		<property name="loginValidator" ref="fpl.login.loginValidator" />
+		<property name="personalDAO" ref="fpl.login.personalDAO" />
+		<property name="loginCredentialDAO" ref="fpl.login.loginCredentialDAO" />
+	   <!-- <property name="loginRecordDAO" ref="fpl.login.loginRecordsDAO" />  -->
+	  <!--  <property name="loginRecord" ref="fpl.login.loginRecord" />  -->
+		<property name="loginProcessorSupport" ref="fpl.login.loginProcessorSupport" />
+		<property name="loginSupportDAO" ref="fpl.login.loginSupportDAO" />
+		<property name="loginrecord" ref="fpl.controller.loginRecordTO"/>
+	</bean>
+	 <bean id="fpl.login.loginAuditprocess" class="com.fpl.core.login.LoginAuditImpl" scope="prototype">
+		<property name="loginAuditDAO" ref="fpl.login.loginAuditDAO" />
+		
+	</bean> 
+	<bean id="fpl.login.loginProcessorSupport" class="com.fpl.core.login.support.LoginRecoverySupport" scope="prototype">
+		<property name="loginRecoveryDAO" ref="fpl.login.loginRecoveryDAO" />
+	</bean>
+	<bean id="fpl.login.loginPersister" class="com.fpl.core.login.LoginPersisterImpl" scope="prototype">
+	    <property name="personalDAO" ref="fpl.login.personalDAO" />
+		<property name="loginCredentialDAO" ref="fpl.login.loginCredentialDAO" />
+		<property name="loginSupportDAO" ref="fpl.login.loginSupportDAO" />
+		<property name="validator" ref="fpl.login.loginRegisterValidator" />
+		<property name="persisterSupport" ref="fpl.login.loginPersisterSupport" />
+	</bean>
+	<bean id="fpl.login.loginPersisterSupport" class="com.fpl.core.login.support.LoginPersisterSupport" scope="prototype">
+		<property name="secretQuestionDAO" ref="fpl.login.secretQuestionDAO" />
+		<property name="userDAO" ref="fpl.login.userDAO" />
+		<property name="loginRecoveryDAO" ref="fpl.login.loginRecoveryDAO" />
+	</bean>
+	<bean id="fpl.login.loginCredentialDAO" class="com.fpl.persistence.login.LoginCredentialDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" />
+ 	<bean id="fpl.login.loginAuditDAO" class="com.fpl.persistence.login.loginAuditDAO"  scope="prototype"/>
+     <bean id="fpl.login.personalDAO" class="com.fpl.persistence.recovery.personal.PersonalDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" /> 
+ 	<bean id="fpl.login.loginSupportDAO" class="com.fpl.persistence.login.LoginSupportDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.login.loginRegisterValidator" class="com.fpl.core.login.support.LoginRegisterValidator" scope="prototype" />
+	<bean id="fpl.login.secretQuestionDAO" class="com.fpl.persistence.login.SecretQuestionDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.login.userDAO" class="com.fpl.persistence.login.UserDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" />
+	<bean id="fpl.login.loginRecoveryDAO" class="com.fpl.persistence.login.LoginRecoveryDAO" parent="fpl.login.abstractHibernateConfig" scope="prototype" />
+	<bean name="fpl.controller.loginServices" class="com.fpl.login.LoginCredentialServices">
+		<property name="loginProcessor" ref="fpl.login.loginProcessor" />
+		<property name="loginPersister" ref="fpl.login.loginPersister" />
+	</bean>
+	<bean name="fpl.controller.loginRecordTO" class="com.fpl.login.LoginRecordTO"/>
+	<!-- <bean name="fpl.login.loginRecord" class=" com.fpl.login.entity.LoginRecord"/> -->
+	<bean name="fpl.controller.loginAuditServices" class="com.fpl.login.LoginAudit">
+	      <property name="loginAuditprocess" ref="fpl.login.loginAuditprocess" /> 
+    </bean>
+	<!-- aspectj beans -->
+	<bean id="fpl.aop.loginCredentialCrypting" class="com.fpl.core.aspect.login.support.LoginCredentialCrypting" />
+	<bean id="fpl.aop.login.loginCredentialAspect" class="com.fpl.core.aspect.login.LoginCredentialCryptingAspect">
+		<property name="credentialCrypting" ref="fpl.aop.loginCredentialCrypting"/>
+	</bean>
+	<bean id="fpl.aop.loginSupportCrypting" class="com.fpl.core.aspect.login.support.LoginSupportCrypting" />
+	<bean id="fpl.aop.login.loginSupportAspect" class="com.fpl.core.aspect.login.LoginSupportCryptingAspect">
+		<property name="baseDecrypterSupport" ref="fpl.aop.loginSupportCrypting"/>
+	</bean>
+	<bean id="fpl.aop.login.baseDecrypterAspect" class="com.fpl.core.aspect.FPLBaseDecrypterAspect">
+		<property name="decrypterSupportMap" >
+			<map>
+				<entry key="LoginCredential" value-ref="fpl.aop.loginCredentialCrypting" />
+				<entry key="LoginSupport" value-ref="fpl.aop.loginSupportCrypting" />
+			</map>
+		</property>
+	</bean>
+	<bean id="fpl.aop.login.loginQueryDAO" class="com.fpl.persistence.login.LoginQueryDAO" scope="prototype" >
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+</beans>

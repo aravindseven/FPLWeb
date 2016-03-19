@@ -1,0 +1,57 @@
+/**
+*10 CSS Notifications
+*Author:http://www.paulund.co.uk/
+*Created:30/05/11
+*/
+
+/*Setup all boxes*/
+.info,.success,.error,.warning,.tip,.secure,.message,.download,.purchase,.print{margin:20px 50px; padding:10px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 4px 4px #dfe1d8;-webkit-box-shadow: 4px 4px #dfe1d8;}
+
+/*Styling for text inside boxes*/
+h4 { margin:5px 5px 5px 80px;padding:0; font-size:16px; }
+p { font-size:12px; color:#000; margin:5px 5px 5px 80px; }
+
+
+/*Boxes*/
+.info{display: none; border:1px solid #0e7fad;color:#0e7fad;background:#c0e9fa url('../images/info.png') no-repeat; background-position:30px 20px;position: absolute; z-index: 10100; top: 0; left: 35%;}
+.success{display: none; border:1px solid #4f8746;color:#4f8746;background:#d4ffcd url('../images/success.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.error{display: none; border:1px solid #641f1a;color:#641f1a;background:#ffd2d4 url('../images/error.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.warning{display: none; border:1px solid #9d9c49;color:#9d9c49;background:#fdfdcb url('../images/warning.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.tip{display: none; border:1px solid #c77d10;color:#c77d10;background:#f9d69e url('../images/tip.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.secure{display: none; border:1px solid #9638f1;color:#9638f1;background:#e5cefc url('../images/secure.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.message{display: none; border:1px solid #000;color:#000;background:#efefef url('../images/message.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.download{display: none; border:1px solid #04b5eb;color:#04b5eb;background:#f7f7f7 url('../images/download.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.purchase{display: none; border:1px solid #426164;color:#426164;background:#c2e1e3 url('../images/purchase.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+.print{display: none; border:1px solid #3c4b5e;color:#3c4b5e;background:#c8d9e3 url('../images/print.png') no-repeat; background-position:30px 20px; position: absolute; z-index: 10100; top: 0; left: 35%;}
+
+.success-info {
+  background: url("../../images/success.png") no-repeat scroll 30px 20px #d4ffcd;
+  border: 1px solid #4f8746;
+  border-radius: 5px;
+  color: #4f8746;
+  display: none;
+  height: 450px;
+  left: 10%;
+  position: absolute;
+  top: 5px;
+  width: 80%;
+}
+
+.success-info > p { font-size:12px; color:#000; margin:5px 5px 5px 80px;  word-wrap: break-word;}
+.success-info > h1 {font-size: 1.5em; margin-left: 80px;}
+
+.failure-info {
+  background: url("../../images/error.png") no-repeat scroll 30px 20px #d4ffcd;
+  border: 1px solid #4f8746;
+  border-radius: 5px;
+  color: #4f8746;
+  display: none;
+  height: 450px;
+  left: 10%;
+  position: absolute;
+  top: 5px;
+  width: 80%;
+}
+
+.failure-info > p { font-size:12px; color:#000; margin:5px 5px 5px 80px;  word-wrap: break-word;}
+.failure-info > h1 {font-size: 1.5em; margin-left: 80px;}

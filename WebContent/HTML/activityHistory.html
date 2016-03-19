@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fpl">
+<head>
+<title>FPL</title>
+<link rel="stylesheet" href="../support/css/bootStrap/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../support/css/custom/style.css" type="text/css">
+<link rel="stylesheet" href="../support/css/custom/notify.css" type="text/css">
+<link rel="stylesheet" href="../support/css/custom/myProfile.css" type="text/css">
+<script type="text/javascript" src="../support/script/jQuery/jquery.js"></script>
+<script type="text/javascript" src="../support/script/bootStrapJS/bootstrap.min.js"></script>
+<script type="text/javascript" src="../support/script/jQuery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../support/script/jQuery/jquery.cookie.js"></script>
+<script type="text/javascript" src="../support/script/bootStrapJS/bootstrap.min.js"></script>
+<script type="text/javascript" src="../support/script/angularJS/angular.min.js"></script>
+<script type="text/javascript" src="../support/script/custom/captcha.js"></script>
+<script type="text/javascript" src="../support/script/mespeak/mespeak.js"></script>
+<script type="text/javascript" src="../support/script/mespeak/mespeak_init.js"></script>
+<script type="text/javascript" src="../support/script/custom/app.js"></script>
+<script type="text/javascript" src="../support/controller/UserLoginController.js"></script>
+<script type="text/javascript" src="../support/controller/UserRegisterController.js"></script>
+<script type="text/javascript" src="../support/controller/PasswordRecoveryController.js"></script>
+<script type="text/javascript" src="../support/controller/UserNameRecoveryController.js"></script>
+<script type="text/javascript" src="../support/script/custom/AesUtil.js"></script>
+<script type="text/javascript" src="../support/script/custom/util.js"></script>
+</head>
+<body>
+</body>
+</html>
+<!-- Main Wrapper Start -->
+<div class="mainWrapper" ng-controller="UserLoginController as uLogin">
+  <!-- Header bar Start -->
+  <div class="navbar navbar-default" role="navigation">
+    <div class="topBar"></div>
+    <!-- Header start -->
+    <div class="headerWrapper">
+      <div class="logo"><a class="navbar-brand" href="index.html"></a></div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span
+						class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span></button>
+      </div>
+      <!-- Top menu bar start -->
+      <div class="navbar-collapse collapse pull-right">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="#about">How it works</a></li>
+          <li><a href="#contact">Resource center</a></li>
+          <li><a href="#contact">Help</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" id="dropdownMenu1" ng-click="uLogin.showCountryDomainDropdown()">FPL Online SG<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Option 1</a></li>
+              <li><a href="#">Option 2</a></li>
+              <li><a href="#">Option 3</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Option A</li>
+              <li><a href="#">Option B</a></li>
+              <li><a href="#">Option C</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- Top menu bar end -->
+      <!-- Tab Nav Start -->
+      <div class="pull-left col-lg-9 col-md-8 col-sm-9">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#home" role="tab"
+						data-toggle="tab">Customer</a></li>
+          <li><a href="#profile" role="tab" data-toggle="tab">Corporates</a></li>
+          <li><a href="#messages" role="tab" data-toggle="tab">Financial
+            Planners</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="home"><a class="active">Profile</a><a>Request</a><a>E Records</a><a>Communications</a></div>
+          <div class="tab-pane" id="profile">...</div>
+          <div class="tab-pane" id="messages">...</div>
+          <div class="tab-pane" id="settings">...</div>
+        </div>
+        <div class="loginBtnWrapper" ng-hide="uLogin.isLogged()">
+          <div class="register" ng-click="uLogin.register()">Register</div>
+          <div class="login" ng-click="uLogin.loginModal()">Login</div>
+        </div>
+        <div ng-show="uLogin.isLogged()">
+          <ul class="userDetails">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" id="dropdownMenu2" ng-click="uLogin.showLoginDropdown()"><span>Welcome</span><span
+								class="marginLten">{{uLogin.username}}</span><span
+								class="glyphicon glyphicon-chevron-down"></span></a>
+              <ul aria-labelledby="dropdownMenu2" class="dropdown-menu" role="menu">
+                <li><a href="#ProfileModal" ng-click="uLogin.profileModal()">My Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">My Notifications</a></li>
+                <li><a href="#">My Reminders</a></li>
+                <li class="divider"></li>
+                <li><a ng-click="uLogin.logout()" class="logout">Log
+                  out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Tab Nav End -->
+    </div>
+    <!-- Header End -->
+  </div>
+  <!-- Header Bar End -->
+  
+  <!-- REQUEST START -->
+  <div class="innerWrapper">
+    <div class="row innerContentWrapper myProfileWrapper">
+      <div class="tabbable">
+<div class="titleHeaderBlue">Request</div>
+        <div class="tab-content clear paddingLnone">
+          <div id="profile" class="tab-pane fade active in paddingLnone profileTabContent">
+            <div class="col-lg-12 col-md-12 col-sm-12 paddingLnone">
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" role="complementary">
+                  <ul class="nav bs-docs-sidenav">
+                    <li><a href="#dropdowns-example">New Request</a></li>
+                    <li><a href="#dropdowns-alignment">Responded Requests</a></li>
+                    <li><a href="#dropdowns-alignment">Search Request</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-10 col-md-10 col-sm-10 requestGrid">
+              <h3 class="blue marginNone">Activity History</h3>
+                <hr />
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>FP Name</th>
+                      <th>Activity Date</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Suresh Kumar</td>
+                      <td>02/08/2014</td>
+                      <td>Type1</td>
+                    </tr>
+                      <tr>
+                      <td>Dilesh Kumar</td>
+                      <td>02/08/2014</td>
+                      <td>Type1</td>
+                    </tr>
+                      <tr>
+                      <td>Sameer</td>
+                      <td>02/08/2014</td>
+                      <td>Type1</td>
+                    </tr>
+                      <tr>
+                      <td>Suresh Kumar</td>
+                      <td>02/08/2014</td>
+                      <td>Type1</td>
+                    </tr>
+                      <tr>
+                      <td>Sameer</td>
+                      <td>02/08/2014</td>
+                      <td>Type1</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MY PROFILE END -->
+  
+  <!-- Footer Start -->
+  <div class="footer errorFooter">
+    <ul class="pull-left">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms and Conditions</a></li>
+      <li><a href="#">Copyright</a></li>
+    </ul>
+  </div>
+  <!-- Footer End -->
+  
+  <!--Notification Start-->
+  <div id="notify-success" class="success"></div>
+  <div id="notify-failure" class="error"></div>
+  <div id="notify-info" class="info"></div>
+  <!--<div class="warning"></div>
+  <div class="print"></div>
+  <div class="purchase"></div>
+  <div class="secure"></div>
+  <div class="message"></div>
+  <div class="download"></div>
+  <div class="tip"></div>-->
+  <!--Notification End-->
+</div>
