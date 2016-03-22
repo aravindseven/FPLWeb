@@ -1,10 +1,3 @@
-/*communication.filter('reverse', function() {
-	  return function(items) {
-		  	console.log("fbdbddfhdksfhkafkashkasgkashkshakhkhkasfhkasfhkjfhkajshfkjashfjksfhjks")
-		    return items.slice().reverse();
-		  };
-		});*/
-
 function CommunicationController($scope, $http, $sce) {
 	this.scope = $scope;
 	this.http = $http;
@@ -77,6 +70,8 @@ function CommunicationController($scope, $http, $sce) {
 	this.monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 	                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	var self = this;
+	var d = new Date();
+	self.scope.currentchatdate = this.monthNames[d.getMonth()]+" "+d.getDate();
 	$('body').on('click','.popper',function (e) {
 	    $('.popper').not(this).popover('hide');
 	});
@@ -2857,13 +2852,13 @@ CommunicationController.prototype.createchatroom = function(partner_user,index) 
 	  var disable_partner_id = '#'+partner_user.loginId;
 	    $(disable_partner_id).prop('disabled', true);
 	    //checking the status of partner user
-	    if(partner_user.status == "offline" || partner_user.status == "do not disturb")
+	    /*if(partner_user.status == "offline" || partner_user.status == "do not disturb")
 	    	{
 	    		//mail ppup should open
 	    		window.location.href="Communication.jsp?type=compose";
 	    	}
 	    else
-	    	{
+	    	{*/
 	    		//chat available
 			    	$.ajax({
 			            type: "POST",
@@ -2921,7 +2916,7 @@ CommunicationController.prototype.createchatroom = function(partner_user,index) 
 			            				self.scope.activeconnections.push(partner_user);
 			            				activeonlineuserarray = self.scope.activeconnections;
 			            				self.scope.onlineusers.splice(index, 1);
-			            				self.connect(customrooms);
+			            				////self.connect(customrooms);
 			            				}
 			            	}
 			            	    self.minmax(customrooms);
@@ -2931,7 +2926,7 @@ CommunicationController.prototype.createchatroom = function(partner_user,index) 
 			            }
 			        });
 	    		
-	    	}
+	    	//}
 	
 	
 };
@@ -2962,235 +2957,298 @@ CommunicationController.prototype.getchatroomsfunc = function() {
 			           // $scope.message = "Timeout called!";
 			        	console.log("$scope.apply function called so alrightitsok");
 			            self.scope.onlineusers = data.Online;
-			            onlineusersarray = data.Online;
+			            console.log(self.scope.onlineusers)
+			            onlineusersarray = self.scope.onlineusers;
+			            console.log("chat rooms from db");
+			        	 console.log(data.Result);
+			            if(data.Result.length != 0)
+			        		{
+			        		for (var i=0;i<data.Result.length;i++)
+			            	{
+			            		customrooms = data.Result[i];
+			            		console.log("customrooms");
+			            		console.log(customrooms);
+			            		console.log("connectedrooms[]",self.scope.connectedRooms.length);
+			            		if(self.scope.connectedRooms.length == 0)
+			            			{
+			        				if(customrooms.ROOM_NAME!="")
+			        				{
+			        					var obj = {};
+					                	var author_name = author_name;
+					                	var author_id = author_id;
+					                	var chat_room = chat_room;
+					                	var benificiary_name = benificiary_name;
+					                	obj.author_name = data.Authorname;
+					                	obj.author_id = data.Author;
+					                	obj.chat_room = customrooms.ROOM_NAME;
+					                	console.log("author name");
+					                	console.log(data.Authorname);
+					                	
+					                	if(data.Authorname == customrooms.FROM_USER)
+				                		{
+					                		var partner_user1 = {};
+					                		console.log("if if executed");
+									 		obj.benificiary_name = customrooms.TO_USER;
+									 		self.scope.connectedRooms.push(obj)
+									 		activeconnectedarray = self.scope.connectedRooms;
+									 		self.minmax(customrooms.ROOM_NAME);
+									 		//creating active online users from actual online users
+									 		onlineinnerloop:
+									 		for(var z=0;z<self.scope.onlineusers.length;z++)
+			            					{
+			            						if(self.scope.onlineusers[z].firstName == customrooms.TO_USER)
+			            							{
+			            									console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			            								 partner_user1 = self.scope.onlineusers[z];
+			            								// self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
+			            						        break onlineinnerloop; 
+			            							}
+			            					}
+									 		//activeonline uses show
+									 		self.scope.active_connectedrooms ="true";
+				            				var active_room = active_room;
+				            				console.log("active rooms called ");
+				            				console.log(active_room);
+				            				//created obj with finaliziled value
+				            				partner_user1.active_room = customrooms.ROOM_NAME;
+				            				//pushed into active array
+				            				self.scope.activeconnections.push(partner_user1);
+				            				activeonlineuserarray = self.scope.activeconnections;
+				            				//self.connect(customrooms.ROOM_NAME);
+				                		}
+					                	else
+				                		{
+					                		var partner_user1 = {};
+				                			console.log("else called np worries a");
+				                			obj.benificiary_name = customrooms.FROM_USER;
+									 		//author=data.Authorname;
+									        self.scope.connectedRooms.push(obj)
+									        activeconnectedarray = self.scope.connectedRooms;
+									        self.minmax(customrooms.ROOM_NAME);
+									      //creating active online users from actual online users
+									        onlineinnerloop:
+										 		for(var z=0;z<self.scope.onlineusers.length;z++)
+				            					{
+				            						if(self.scope.onlineusers[z].firstName == customrooms.FROM_USER)
+				            							{
+				            									console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				            								 partner_user1 = self.scope.onlineusers[z];
+				            								// self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
+				            						        break onlineinnerloop; 
+				            							}
+				            					}
+									 		//activeonline uses show
+									 		self.scope.active_connectedrooms ="true";
+				            				var active_room = active_room;
+				            				console.log("active rooms called ");
+				            				console.log(active_room);
+				            				//created obj with finaliziled value
+				            				partner_user1.active_room = customrooms.ROOM_NAME;
+				            				//pushed into active array
+				            				self.scope.activeconnections.push(partner_user1);
+				            				activeonlineuserarray = self.scope.activeconnections;
+				            				//self.connect(customrooms.ROOM_NAME);
+						        		}
+					                	}
+			        			}
+			            		else{
+			            				innerloop:
+			            				for (var j=0;j<self.scope.connectedRooms.length;j++)
+				                    	{
+			            					  if(self.scope.connectedRooms[j]!=customrooms.ROOM_NAME){
+			            						  if(customrooms.ROOM_NAME!=""){
+			          							 	var obj = {};
+			           			                	var author_name = author_name;
+			           			                	var author_id = author_id;
+			           			                	var chat_room = chat_room;
+			           			                	var benificiary_name = benificiary_name;
+			           			                	obj.author_name = data.Authorname;
+			           			                	obj.author_id = data.Author;
+			           			                	obj.chat_room = customrooms.ROOM_NAME;
+			           			                	console.log("author name");
+			           			                	console.log(data.Authorname);
+			           			                	if(data.Authorname == customrooms.FROM_USER)
+			           			                		{
+			           			                		var partner_user1 = {};
+			  	         			                		console.log("if if executed");
+			  	        							 		obj.benificiary_name = customrooms.TO_USER;
+			  	        							 		self.scope.connectedRooms.push(obj)
+			  	        							 		activeconnectedarray = self.scope.connectedRooms;
+			  	        							 		self.minmax(customrooms.ROOM_NAME);
+			  	        							 		console.log(customrooms.ROOM_NAME);
+			  	        							 		
+			  	        							 		//creating active online users from actual online users
+			  	        							 		onlineinnerloop:
+			  	        							 		for(var z=0;z<self.scope.onlineusers.length;z++)
+			  	        	            					{
+			  	        							 			console.log(self.scope.onlineusers[z].firstName);
+			  	        							 			if(self.scope.onlineusers[z].firstName == customrooms.TO_USER)
+			  	        	            							{
+			  	        							 					console.log("cccccccccccccccccccccccccccccccccccccccccccccccccccc");
+			  	        	            								 partner_user1 = self.scope.onlineusers[z];
+			  	        	            								// self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
+			  	        	            								break onlineinnerloop; 
+			  	        	            							}
+			  	        							 			else
+			  	        							 				{
+			  	        							 					console.log("else called in the function");
+			  	        							 					console.log(self.scope.onlineusers[z].firstName);
+			  	        							 					console.log(customrooms.TO_USER);
+			  	        							 					
+			  	        							 				}
+			  	        	            					}
+			  	        							 		//activeonline uses show
+			  	        							 		self.scope.active_connectedrooms ="true";
+			  	        		            				var active_room = active_room;
+			  	        		            				console.log("active rooms called ");
+			  	        		            				console.log(active_room);
+			  	        		            				//created obj with finaliziled value
+			  	        		            				partner_user1.active_room = customrooms.ROOM_NAME;
+			  	        		            				//pushed into active array
+			  	        		            				self.scope.activeconnections.push(partner_user1);
+			  	        		            				activeonlineuserarray = self.scope.activeconnections;
+			  	        		            				//self.connect(customrooms.ROOM_NAME);
+			  		         			        		}
+			           			                	else
+			           			                		{
+			           			                		var partner_user1 = {};
+			           			                			obj.benificiary_name = customrooms.FROM_USER;
+			  	        							 		//author=data.Authorname;
+			  		         						        self.scope.connectedRooms.push(obj)
+			  		         						        activeconnectedarray = self.scope.connectedRooms;
+			  		         						     self.minmax(customrooms.ROOM_NAME);
+			  		         						//creating active online users from actual online users
+			  		   						 		onlineinnerloop:
+			  		   						 		for(var z=0;z<self.scope.onlineusers.length;z++)
+			  		               					{
+			  		   						 		if(self.scope.onlineusers[z].firstName == customrooms.FROM_USER)
+			  		               							{
+			  		               						console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+			  		               								 partner_user1 = self.scope.onlineusers[z];
+			  		               								 break onlineinnerloop; 
+			  		               							}
+			  		               					}
+			  		   						 		//activeonline uses show
+			  		   						 		self.scope.active_connectedrooms ="true";
+			  		   	            				var active_room = active_room;
+			  		   	            				console.log("active rooms called ");
+			  		   	            				console.log(active_room);
+			  		   	            				//created obj with finaliziled value
+			  		   	            				partner_user1.active_room = customrooms.ROOM_NAME;
+			  		   	            				//pushed into active array
+			  		   	            				self.scope.activeconnections.push(partner_user1);
+			  		   	            				activeonlineuserarray = self.scope.activeconnections;
+			  		   	            				//self.connect(customrooms.ROOM_NAME);
+					         			        		}
+			            						  }
+				            	    		  }
+				            	    		  else
+			            	    			  {
+				            	    			  console.log("no new connection");
+			            	    			  }
+			            					  break innerloop; 
+				                    	}
+				            	}
+			            	}
+			        		
+			        		//window.setTimeout(function(){
+			        			var temparray = []
+			        			var temp_cht_flag = 0;
+			        		console.log(self.scope.onlineusers)
+						 		for(var z=0;z<self.scope.onlineusers.length;z++)
+            					{	console.log(self.scope.onlineusers.length)
+						 			console.log(z);
+            					console.log(self.scope.onlineusers[z])
+            					console.log(self.scope.onlineusers[z].firstName)
+						 			onlineinnerloopdelete:
+						 			for(var x=0;x<=self.scope.activeconnections.length;x++)
+					 				{
+						 				if(self.scope.onlineusers[z].firstName == self.scope.activeconnections[x].firstName)
+            							{
+						 					console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+            								//self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
+            								temp_cht_flag = 1;
+            						        break onlineinnerloopdelete; 
+            							}
+						 				else
+						 					{
+						 					temp_cht_flag = 0;
+						 					}
+					 				}
+					        		if(temp_cht_flag == 0)
+					        		{
+					        			temparray.push(self.scope.onlineusers[z])
+					        			console.log(temparray)
+					        		}
+						 		
+            					}
+			        		console.log(temparray)
+			        			if(temparray.length == 0)
+			        				{
+			        				self.scope.onlineusers = [];
+			        				}
+			        			else
+			        				{
+			        				self.scope.onlineusers = temparray;
+			        				}
+
+			        			
+			        			
+			        		//},1000);
+			        		/*console.log("aravind rooms")
+			        		console.log(self.scope.connectedRooms.length)
+			        		console.log(self.scope.connectedRooms)
+			        		console.log("online users");
+			        		console.log(self.scope.onlineusers.length)
+			        		console.log(self.scope.onlineusers)
+			        		console.log("actiave connections roomsa");
+			        		console.log(self.scope.activeconnections.length)
+			        		console.log(self.scope.activeconnections)*/
+			        		
+			        		//adding message in the chat pop up boxa
+			        		window.setTimeout(function(){
+			        		for(b=0;b<data.Result.length;b++)
+			        			{
+			        			customrooms = data.Result[b];
+			        			for(var a=0;a<customrooms.CHAT_MESSAGES.length;a++)
+			               		{
+			                   			var objects = customrooms.CHAT_MESSAGES[a];
+			                   			if(objects.SENDER == authorsenderid)
+			    	  			        	 {
+			    	  			        	 	color = "blue";
+			    	  			        	 }
+			                   			else
+			    	  			        	 {
+			    	  			        	 	color = "black";
+			    	  			        	 }
+			                   			 var datetime = new Date();
+			                   			  //addMessage(objects.MESSAGE,color,customrooms.ROOM_NAME,d)
+			                   			var chatdisplayid = '#'+customrooms.ROOM_NAME+ ' ul';
+			                   			if(color=='blue'){
+			                   		    	$(chatdisplayid).append("<li class=\"leftchat\"><div class=\"timestamp timestamp_l\">"+(datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours()) + ':'
+			                   		                + (datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes())+"</div><div class=\"chatbox\">"+objects.MESSAGE+"</div><div class=\"timestamp timestamp_l\" style=\"right:3em\"></div><span class=\"chat_image chat_image_left\"><img src=\"imgs/profilepicleft.png\" /></span></li>");
+			                   			
+			                   			}else{
+			                   				$(chatdisplayid).append("<li class=\"rightchat\"><div class=\"timestamp timestamp_r\">"+(datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours()) + ':'
+			                   		                + (datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes())+"</div><div class=\"chatbox\">"+objects.MESSAGE+"</div><span class=\"chat_image chat_image_right\"><img src=\"imgs/profilepicleft.png\" /></span></li>");
+			                   		    }
+			               		}
+			        			}
+			        		
+			        		},1000);
+			        	
+			        		}
 			        });
 			    }, 100);
-        	 console.log("chat rooms from db");
-        	 console.log(data.Result);
-            if(data.Result.length != 0)
-        		{
-        		for (var i=0;i<data.Result.length;i++)
-            	{
-            		customrooms = data.Result[i];
-            		console.log("customrooms");
-            		console.log(customrooms);
-            		console.log("connectedrooms[]",self.scope.connectedRooms.length);
-            		if(self.scope.connectedRooms.length == 0)
-            			{
-        				if(customrooms.ROOM_NAME!="")
-        				{
-        					var obj = {};
-		                	var author_name = author_name;
-		                	var author_id = author_id;
-		                	var chat_room = chat_room;
-		                	var benificiary_name = benificiary_name;
-		                	obj.author_name = data.Authorname;
-		                	obj.author_id = data.Author;
-		                	obj.chat_room = customrooms.ROOM_NAME;
-		                	console.log("author name");
-		                	console.log(data.Authorname);
-		                	
-		                	if(data.Authorname == customrooms.FROM_USER)
-	                		{
-		                		var partner_user1 = {};
-		                		console.log("if if executed");
-						 		obj.benificiary_name = customrooms.TO_USER;
-						 		self.scope.connectedRooms.push(obj)
-						 		activeconnectedarray = self.scope.connectedRooms;
-						 		self.minmax(customrooms.ROOM_NAME);
-						 		onlineinnerloop:
-						 		for(var z=0;z<self.scope.onlineusers.length;z++)
-            					{
-            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-            							{
-            								 partner_user1 = self.scope.onlineusers[z];
-            						        break onlineinnerloop; 
-            							}
-            					}
-						 		self.scope.active_connectedrooms ="true";
-	            				var active_room = active_room;
-	            				console.log("active rooms called ");
-	            				console.log(active_room);
-	            				partner_user1.active_room = customrooms.ROOM_NAME;
-	            				self.scope.activeconnections.push(partner_user1);
-	            				activeonlineuserarray = self.scope.activeconnections;
-	            				activeinnerloop:
-	            					for(var z=0;z<self.scope.onlineusers.length;z++)
-	            					{
-	            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-	            							{
-	            								self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
-	            						        break activeinnerloop; 
-	            							}
-	            					}
-	            				self.connect(customrooms.ROOM_NAME);
-	                		}
-		                	else
-	                		{
-		                		var partner_user1 = {};
-	                			console.log("else called np worries a");
-	                			obj.benificiary_name = customrooms.FROM_USER;
-						 		//author=data.Authorname;
-						        self.scope.connectedRooms.push(obj)
-						        activeconnectedarray = self.scope.connectedRooms;
-						        self.minmax(customrooms.ROOM_NAME);
-						 		onlineinnerloop:
-						 		for(var z=0;z<self.scope.onlineusers.length;z++)
-            					{
-            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-            							{
-            								 partner_user1 = self.scope.onlineusers[z];
-            						        break onlineinnerloop; 
-            							}
-            					}
-						 		self.scope.active_connectedrooms ="true";
-	            				var active_room = active_room;
-	            				partner_user1.active_room = customrooms.ROOM_NAME;
-	            				self.scope.activeconnections.push(partner_user1);
-	            				activeonlineuserarray = self.scope.activeconnections;
-	            				activeinnerloop:
-	            					for(var z=0;z<self.scope.onlineusers.length;z++)
-	            					{
-	            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-	            							{
-	            								self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
-	            						        break activeinnerloop; 
-	            							}
-	            					}
-	            				self.connect(customrooms.ROOM_NAME);
-			        		}
-		                	}
-        			}
-            		else{
-            				innerloop:
-            				for (var j=0;j<self.scope.connectedRooms.length;j++)
-	                    	{
-            					  if(self.scope.connectedRooms[j]!=customrooms.ROOM_NAME){
-            						  if(customrooms.ROOM_NAME!=""){
-          							 	var obj = {};
-           			                	var author_name = author_name;
-           			                	var author_id = author_id;
-           			                	var chat_room = chat_room;
-           			                	var benificiary_name = benificiary_name;
-           			                	obj.author_name = data.Authorname;
-           			                	obj.author_id = data.Author;
-           			                	obj.chat_room = customrooms.ROOM_NAME;
-           			                	console.log("author name");
-           			                	console.log(data.Authorname);
-           			                	if(data.Authorname == customrooms.FROM_USER)
-           			                		{
-           			                		var partner_user1 = {};
-  	         			                		console.log("if if executed");
-  	        							 		obj.benificiary_name = customrooms.TO_USER;
-  	        							 		self.scope.connectedRooms.push(obj)
-  	        							 		activeconnectedarray = self.scope.connectedRooms;
-  	        							 		self.minmax(customrooms.ROOM_NAME);
-  	        							 		onlineinnerloop:
-  	        							 		for(var z=0;z<self.scope.onlineusers.length;z++)
-  	        	            					{
-  	        	            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-  	        	            							{
-  	        	            								 partner_user1 = self.scope.onlineusers[z];
-  	        	            						        break onlineinnerloop; 
-  	        	            							}
-  	        	            					}
-  	        							 		self.scope.active_connectedrooms ="true";
-  	        		            				var active_room = active_room;
-  	        		            				partner_user1.active_room = customrooms.ROOM_NAME;
-  	        		            				self.scope.activeconnections.push(partner_user1);
-  	        		            				activeonlineuserarray = self.scope.activeconnections;
-  	        		            				activeinnerloop:
-  	        		            					for(var z=0;z<self.scope.onlineusers.length;z++)
-  	        		            					{
-  	        		            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-  	        		            							{
-  	        		            								self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
-  	        		            						        break activeinnerloop; 
-  	        		            							}
-  	        		            					}
-  	        		            				self.connect(customrooms.ROOM_NAME);
-  		         			        		}
-           			                	else
-           			                		{
-           			                		var partner_user1 = {};
-           			                			obj.benificiary_name = customrooms.FROM_USER;
-  	        							 		//author=data.Authorname;
-  		         						        self.scope.connectedRooms.push(obj)
-  		         						        activeconnectedarray = self.scope.connectedRooms;
-  		         						     self.minmax(customrooms.ROOM_NAME);
-  		      						 		onlineinnerloop:
-  		      						 		for(var z=0;z<self.scope.onlineusers.length;z++)
-  		                  					{
-  		                  						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-  		                  							{
-  		                  						partner_user1 = self.scope.onlineusers[z];
-  		                  						        break onlineinnerloop; 
-  		                  							}
-  		                  					}
-  		      						 		self.scope.active_connectedrooms ="true";
-  		      	            				var active_room = active_room;
-  		      	            				partner_user1.active_room = customrooms.ROOM_NAME;
-  		      	            				self.scope.activeconnections.push(partner_user1);
-  		      	            				activeonlineuserarray = self.scope.activeconnections;
-  		      	            				activeinnerloop:
-  		      	            					for(var z=0;z<self.scope.onlineusers.length;z++)
-  		      	            					{
-  		      	            						if(self.scope.onlineusers[z].loginId == customrooms.ROOM_NAME)
-  		      	            							{
-  		      	            								self.scope.onlineusers.splice(self.scope.onlineusers[z], 1);
-  		      	            						        break activeinnerloop; 
-  		      	            							}
-  		      	            					}
-  		      	            			self.connect(customrooms.ROOM_NAME);
-		         			        		}
-            						  }
-	            	    		  }
-	            	    		  else
-            	    			  {
-	            	    			  console.log("no new connection");
-            	    			  }
-            					  break innerloop; 
-	                    	}
-	            	}
-            	}
-        		//adding message in the chat pop up boxa
-        		window.setTimeout(function(){
-        		for(b=0;b<data.Result.length;b++)
-        			{
-        			customrooms = data.Result[b];
-        			for(var a=0;a<customrooms.CHAT_MESSAGES.length;a++)
-               		{
-                   			var objects = customrooms.CHAT_MESSAGES[a];
-                   			if(objects.SENDER == authorsenderid)
-    	  			        	 {
-    	  			        	 	color = "blue";
-    	  			        	 }
-                   			else
-    	  			        	 {
-    	  			        	 	color = "black";
-    	  			        	 }
-                   			 var datetime = new Date();
-                   			  //addMessage(objects.MESSAGE,color,customrooms.ROOM_NAME,d)
-                   			var chatdisplayid = '#'+customrooms.ROOM_NAME+ ' ul';
-                   			if(color=='blue'){
-                   		    	$(chatdisplayid).append("<li class=\"leftchat\"><div class=\"timestamp timestamp_l\">"+(datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours()) + ':'
-                   		                + (datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes())+"</div><div class=\"chatbox\">"+objects.MESSAGE+"</div><div class=\"timestamp timestamp_l\" style=\"right:3em\"></div><span class=\"chat_image chat_image_left\"><img src=\"imgs/profilepicleft.png\" /></span></li>");
-                   			
-                   			}else{
-                   				$(chatdisplayid).append("<li class=\"rightchat\"><div class=\"timestamp timestamp_r\">"+(datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours()) + ':'
-                   		                + (datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes())+"</div><div class=\"chatbox\">"+objects.MESSAGE+"</div><span class=\"chat_image chat_image_right\"><img src=\"imgs/profilepicleft.png\" /></span></li>");
-                   		    }
-               		}
-        			}
-        		
-        		},1000);
-        	}
+        	
             
          },
         error: function (textStatus, errorThrown) { 
            // Success = false;//doesnt goes here
         }
     });
+	
+	
 	
     
 };
@@ -3335,7 +3393,7 @@ CommunicationController.prototype.abcd= function(event) {
 
 //popup box minimize maximize
 CommunicationController.prototype.minmax = function(id){
-	var self =this;
+		var self =this;
 		var chattitle ='#'+id;
 		//alert(chattitle);
 		$(chattitle).show();
@@ -3430,40 +3488,7 @@ CommunicationController.prototype.popupclose = function(id){
 			var partner_id;
 		    var chatcloser = '#'+id;
 		    $(chatcloser).fadeOut();
-		    var a=id.split("-")[0];
-		    var b= id.split("-")[1];
-		    if(authorsenderid != a)
-		    	{
-		    		partner_id=a;
-		    	}
-		    else if(authorsenderid != b)
-		    	{
-		    		partner_id=b;
-		    	}
-		    
-		    for(var z=0;z<self.scope.onlineusers.length;z++)
-		    	{
-		    		if(partner_id ==self.scope.onlineusers[z].loginId)
-		    			{
-		    				var partner_name = self.scope.onlineusers[z].firstName;
-		    				break;
-		    			}
-		    	}
-		    //popup close// needto check with the status for partner
-		      $.ajax({
-			        type: "POST",
-			        url: "statuschecking.do",
-			        dataType: "json",
-			        data:{chat_roompartnerid:partner_id,chat_room:id,partner_name:partner_name,author_name:self.scope.authorsendername},
-			        async:true,
-			        success: function (data) {
-			        	
-			        },
-			        error: function (textStatus, errorThrown) { 
-			           // Success = false;//doesnt goes here
-			        }
-			    });
-		    };
+		   };
 
 var print_first;
 var client;
@@ -3692,9 +3717,8 @@ function restfunction(id)
 {
 	var a= "#"+id+"sess";
 	console.log(a);
-
-	//$("#"+id1).hide();
 	$(a).hide();
+	$(a).remove();
 	console.log(buttonresettimer)
 	for(var i=0;i<buttonresettimer.length;i++)
 		{
@@ -3716,33 +3740,34 @@ var StopWatchForMinimize = function() {
 			    ++timer.counter;
 			     if(timer.counter == 30)
 			    	 {
-			    	 			var chattitle ='#'+timer.chatroomid;
+			    	 			/*var chattitle ='#'+timer.chatroomid;
 			    	 			var sesmesid = timer.chatroomid + 'sess';
 			    	 			$(sesmesid).show();
-			    	 			console.log(sesmesid)
 			    	 			$(chattitle).append("<div class=\"session_msg\"  id='"+sesmesid+"' >Your Session Is Going to end.<button onClick=\"restfunction('"+timer.chatroomid+"')\">OK</button></div>");
 			    	 			$(chattitle).toggleClass('closed');
+			    	 			$(chattitle).show();
 					            if($(chattitle).hasClass('opened'))
 					            {
-					            $(chattitle).animate({
-					                bottom:'21.45em'
-
-					            },400);
-					            }
+					            	
+					            	$(chattitle).animate({
+						                bottom:'21.45em'
+						            },400);
+						            }
 					            else
 					            {
+					            	
 					                $(chattitle).animate({
 					                	bottom:'21.45em'
 
 					            });
-					            }
+					            }*/
 					            
 					            
 			    	 }
 			     if(timer.counter >= 60)
-		    	{
+		    	{/*
 			    	
-		    		 clearInterval(refreshId);
+		    		clearInterval(refreshId);
 			    	var partner_id;
 				    var chatcloser = '#'+timer.chatroomid;
 				    $(chatcloser).fadeOut();
@@ -3756,6 +3781,7 @@ var StopWatchForMinimize = function() {
 				    	{
 				    		partner_id=b;
 				    	}
+				    //getting partner name and partner id
 				    for(var z=0;z<activeonlineuserarray.length;z++)
 				    	{
 				    		if(partner_id ==activeonlineuserarray[z].loginId)
@@ -3765,8 +3791,7 @@ var StopWatchForMinimize = function() {
 				    			}
 				    	}
 				    
-				    //alert(partner_name)
-				    //popup close// needto check with the status for partner
+				   //popup close// needto check with the status for partner
 				      $.ajax({
 					        type: "POST",
 					        url: "statuschecking.do",
@@ -3774,7 +3799,7 @@ var StopWatchForMinimize = function() {
 					        data:{chat_roompartnerid:partner_id,chat_room:timer.chatroomid,partner_name:partner_name,author_name:onlineauthor_name},
 					        async:true,
 					        success: function (data) {
-						        	//alert(data);
+						        	
 					        },
 					        error: function (textStatus, errorThrown) { 
 					           // Success = false;//doesnt goes here
@@ -3789,28 +3814,31 @@ var StopWatchForMinimize = function() {
 	                    			break;
 	                			}
 	                	}
-				     /* if(activeconnectedarray.length ==0)
+				      console.log(activeconnectedarray)
+				      console.log(activeconnectedarray.length)
+				      
+				      if(activeconnectedarray.length ==0)
 				    	  {
 				    	  
-				    	  }*/
+				    	  }
+				      
+				      console.log(activeonlineuserarray)
+				      console.log(onlineusersarray)
 				      
 				      for(var z=0;z<activeonlineuserarray.length;z++)
 				    	{
 				    		if(partner_id ==activeonlineuserarray[z].loginId)
 				    			{
+				    			console.log("activelly called inside the arraya");
 				    			onlineusersarray.push(activeonlineuserarray[z]);
 				    			activeonlineuserarray.splice(activeonlineuserarray[z], 1);
 				    			
                     			break;
 				    			}
 				    	}
-				      
-				      
-				      
-				      
 				      //need to remove from activeconnections and add to onlineusersa
-		    	 
-		    	}
+				      $("#chat_recipitents").load('');
+		    	*/}
 			  }, 1000);
 		 
 	  }
@@ -3823,24 +3851,46 @@ var StopWatchForMinimize = function() {
 
 CommunicationController.prototype.activeconnect = function(userobj)
 {
+	console.log("called")
+	console.log(userobj.active_room);
 	var self = this;
+	var temp_flag = 0;
+	console.log(self.scope.eventsForMinimize);
 	var disable_partner_id = '#'+userobj.loginId;
 	$(disable_partner_id).prop('disabled', true);
-	for(var z=0;z<self.scope.lastelementarraya.length;z++)
+	//checking the chat room it is excists in minimize array aka lastelementarraya  
+	if(self.scope.lastelementarraya.length == 0)
 		{
-			if(self.scope.lastelementarraya[z].chatroomid == userobj.active_room)
-				{
-					self.scope.lastelementarraya.splice(self.scope.lastelementarraya[z], 1);
-			        self.minmax(userobj.active_room);
-					break;
-				}
+		temp_flag = 0;
 		}
+	else
+		{
+		//checking the chat room it is excists in minimize array aka lastelementarraya if exsists
+		//checking chat room id then open it...
+			for(var z=0;z<self.scope.lastelementarraya.length;z++)
+			{
+				console.log(self.scope.lastelementarraya[z].chatroomid)
+				if(self.scope.lastelementarraya[z].chatroomid == userobj.active_room)
+					{
+						console.log("called inside loop")
+						self.scope.lastelementarraya.splice(self.scope.lastelementarraya[z], 1);
+						self.minmax(userobj.active_room);
+						temp_flag= 1;
+						break;
+					}
+				else
+					{
+					temp_flag = 0;
+					}
+			}
+			
+	if(temp_flag == 0){
+		self.minmax(userobj.active_room);
+	}
+		}
+	
 	
 	
 	
 }
     
-/*CommunicationController.prototype.resetS = function()
-{
-alert("wooooooooooooow");	
-}*/

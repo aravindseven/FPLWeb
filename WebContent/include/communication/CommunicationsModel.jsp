@@ -125,7 +125,7 @@
 
 				<div class="chat_screen" id={{chat.chat_room}}>
 					<div class="row text-center">
-						<span class="main_time_stamp">Mar 5</span>
+						<span class="main_time_stamp">{{currentchatdate}}</span>
 					</div>
 					<ul>
 						<li>

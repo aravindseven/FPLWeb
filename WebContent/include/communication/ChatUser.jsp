@@ -13,7 +13,7 @@
 			</span>
 		</div>
 <!-- Active connections array -->
-			<div class="main_chat_cont">
+			<div class="main_chat_cont" id="chat_recipitents">
 		 <div ng-show="active_connectedrooms=='true'">
 			<h5 style="padding-left: 5px;">Active users</h5>
 			<ul id="userList" ng-repeat="users in activeconnections | filter:userSearch | orderBy: 'firstName'" id="{{users.loginId}}" ng-click="uCommunication.activeconnect(users)">
